@@ -8,7 +8,7 @@
  * - 图片资源: Cache First, 最长30天
  */
 
-const CACHE_NAME = 'obtstar-v2';
+const CACHE_NAME = 'obtstar-v3';
 const STATIC_CACHE = 'obtstar-static-v2';
 const API_CACHE = 'obtstar-api-v2';
 const IMAGE_CACHE = 'obtstar-images-v2';

@@ -73,7 +73,7 @@ function loadCategories() {
 function loadReports() {
   if (reportsCache) return reportsCache;
 
-  const dataDir = path.join(__dirname, '..', 'data');
+  const dataDir = path.join(__dirname, '..', 'docs', 'data');
   const reportsFile = path.join(dataDir, 'reports.js');
 
   const content = fs.readFileSync(reportsFile, 'utf-8');
@@ -210,7 +210,7 @@ function loadManifest(reportId) {
     return manifestCache.get(reportId);
   }
 
-  const manifestPath = path.join(__dirname, '..', 'data', 'reports-content', reportId, 'manifest.json');
+  const manifestPath = path.join(__dirname, '..', 'docs', 'data', 'reports-content', reportId, 'manifest.json');
 
   if (!fs.existsSync(manifestPath)) {
     return null;
@@ -231,7 +231,7 @@ function loadContentChunk(reportId, chunkIndex) {
     return contentCache.get(cacheKey);
   }
 
-  const chunkPath = path.join(__dirname, '..', 'data', 'reports-content', reportId, `chunk-${chunkIndex}.js`);
+  const chunkPath = path.join(__dirname, '..', 'docs', 'data', 'reports-content', reportId, `chunk-${chunkIndex}.js`);
 
   if (!fs.existsSync(chunkPath)) {
     return null;

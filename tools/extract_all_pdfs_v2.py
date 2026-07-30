@@ -149,8 +149,9 @@ output_lines.append("if (typeof module !== 'undefined' && module.exports) {")
 output_lines.append("  module.exports = { REPORT_CONTENTS };")
 output_lines.append("}")
 
-# 写入文件
-with open('data/report-contents.js', 'w', encoding='utf-8') as f:
+# 写入文件（输出到 <repo>/docs/data/）
+output_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'docs', 'data', 'report-contents.js')
+with open(output_path, 'w', encoding='utf-8') as f:
     f.write('\n'.join(output_lines))
 
 print("report-contents.js 已更新，包含所有PDF内容")

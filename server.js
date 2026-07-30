@@ -3,8 +3,8 @@ const fs = require('fs');
 const path = require('path');
 const { handleAPIRequest } = require('./api');
 
-// 服务器根目录
-const ROOT_DIR = __dirname;
+// 服务器根目录（部署产物均在 docs/ 下，GitHub Pages 也发布该目录）
+const ROOT_DIR = path.join(__dirname, 'docs');
 
 const server = http.createServer((req, res) => {
   // 解析URL，移除查询参数
@@ -17,6 +17,13 @@ const server = http.createServer((req, res) => {
 
   // 静态文件处理 - 使用绝对路径
   let filePath = path.join(ROOT_DIR, pathname === '/' ? 'index.html' : pathname);
+
+  // 路径穿越防护：解析后的路径必须仍位于 ROOT_DIR 内
+  if (!path.resolve(filePath).startsWith(path.resolve(ROOT_DIR) + path.sep)) {
+    res.writeHead(403, { 'Content-Type': 'text/html; charset=utf-8' });
+    res.end('<h1>403 Forbidden</h1>', 'utf-8');
+    return;
+  }
 
   // 获取文件扩展名
   const extname = String(path.extname(filePath)).toLowerCase();

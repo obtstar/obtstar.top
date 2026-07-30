@@ -3,7 +3,7 @@
 import sys, io, os, re, json
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 
-base = 'C:/Users/ryuub/WorkBuddy/Claw/obtstar-website/data/reports-content'
+base = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'docs', 'data', 'reports-content')
 reports = ['prompt-engineering-v7', 'digital-transform-2024-2030', 'knowledge-memory-arch', 
            'data-stream-micro-light', 'ai-coding-tools-growth', 'ai-fact-check-2026']
 

@@ -31,8 +31,8 @@ XIAOYI_REPORT_ID = 'ai-fact-check-2026'
 # 每个 chunk 包含的最大页数
 PAGES_PER_CHUNK = 15
 
-# 输出目录
-OUTPUT_BASE = 'C:/Users/ryuub/WorkBuddy/Claw/obtstar-website/data/reports-content'
+# 输出目录（相对于本脚本位置：<repo>/docs/data/reports-content）
+OUTPUT_BASE = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'docs', 'data', 'reports-content')
 
 # ─────────────────────────────────────────────
 # 辅助函数
