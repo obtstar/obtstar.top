@@ -262,9 +262,34 @@
 
     .reader-article table {
       width: 100%;
+      display: block;
+      max-width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
       border-collapse: collapse;
       margin: 1.5rem 0;
       font-size: 0.9375rem;
+    }
+
+    /* 富内容溢出防护：图片 / 代码块 / 图表 */
+    .reader-article img,
+    .reader-article video,
+    .reader-article iframe {
+      max-width: 100%;
+      height: auto;
+    }
+    .reader-article pre,
+    .reader-article code {
+      max-width: 100%;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .reader-article .chart-container,
+    .reader-article .flow-chart,
+    .reader-article .risk-chart {
+      max-width: 100%;
+      overflow-x: auto;
     }
 
     .reader-article th, .reader-article td {
@@ -398,6 +423,84 @@
       }
     }
 
+    /* 移动端侧栏遮罩 */
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      top: 56px;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 45;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    @media (max-width: 1023px) {
+      .sidebar-overlay.visible {
+        display: block;
+        opacity: 1;
+      }
+    }
+
+    /* 超小屏适配 */
+    @media (max-width: 480px) {
+      .reader-header {
+        padding: 0 0.75rem;
+        gap: 0.25rem;
+      }
+      .reader-header-left {
+        gap: 0.5rem;
+        min-width: 0;
+      }
+      .reader-logo {
+        font-size: 1.0625rem;
+        flex-shrink: 0;
+      }
+      .reader-title {
+        max-width: 30vw;
+        font-size: 0.8125rem;
+      }
+      .reader-header-right {
+        gap: 0.125rem;
+      }
+      .reader-btn {
+        width: 32px;
+        height: 32px;
+      }
+      /* 移动端浏览器全屏意义不大，隐藏以缓解拥挤 */
+      .reader-btn.fullscreen-btn {
+        display: none;
+      }
+      .reader-content-wrapper {
+        padding: 1.5rem 1rem;
+      }
+      .reader-article {
+        font-size: 1rem;
+        line-height: 1.8;
+      }
+      .reader-article h1 {
+        font-size: 1.375rem;
+      }
+      .reader-article h2 {
+        font-size: 1.1875rem;
+      }
+      .reader-article h3 {
+        font-size: 1.0625rem;
+      }
+      .reader-article table {
+        font-size: 0.8125rem;
+      }
+      .reader-article th,
+      .reader-article td {
+        padding: 0.5rem 0.625rem;
+      }
+      .reader-sidebar {
+        width: 240px;
+      }
+      .reader-page-btn {
+        padding: 0.625rem 1rem;
+      }
+    }
+
     /* 字体大小控制 */
     .font-small .reader-article { font-size: 0.9375rem; }
     .font-medium .reader-article { font-size: 1.0625rem; }
@@ -477,6 +580,7 @@
     .risk-bar::before {
       content: '';
       width: var(--value);
+      max-width: 100%;
       height: 24px;
       background: var(--color);
       border-radius: 4px;
@@ -1015,7 +1119,7 @@
       <button class="reader-btn sidebar-toggle" onclick="toggleSidebar()" title="目录">
         <i class="fas fa-bars"></i>
       </button>
-      <button class="reader-btn lang-btn" onclick="toggleLanguage()" title="切换语言" style="font-size: 0.75rem; font-weight: 600; width: auto; padding: 0 10px;">
+      <button class="reader-btn lang-btn" id="langBtn" onclick="toggleLanguage()" title="切换语言" style="font-size: 0.75rem; font-weight: 600; width: auto; padding: 0 10px;">
         <span id="langIcon">中</span>
       </button>
       <button class="reader-btn" onclick="toggleTheme()" title="深色模式">
@@ -1032,7 +1136,7 @@
         <i class="fas fa-file-pdf"></i>
       </button>
       -->
-      <button class="reader-btn" onclick="toggleFullscreen()" title="全屏">
+      <button class="reader-btn fullscreen-btn" onclick="toggleFullscreen()" title="全屏">
         <i class="fas fa-expand" id="fullscreenIcon"></i>
       </button>
     </div>
@@ -1055,6 +1159,8 @@
         <!-- 由 JS 填充 -->
       </nav>
     </aside>
+    <!-- 移动端侧栏遮罩 -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 
     <!-- 中间内容 -->
     <div class="reader-content-wrapper">
@@ -1148,7 +1254,7 @@
       },
       'ja': {
         loading: 'レポートコンテンツを読み込み中...',
-        loadingMore: ' المزيد من المحتوىを読み込み中...',
+        loadingMore: 'コンテンツをさらに読み込み中...',
         noContent: 'コンテンツがありません',
         returnDetail: 'レポート詳細に戻る',
         toc: '目次',
@@ -1176,17 +1282,21 @@
 
     // 当前语言
     let currentLang = localStorage.getItem('reader-lang') || 'zh-CN';
+    if (!SUPPORTED_LANGS.includes(currentLang)) {
+      currentLang = 'zh-CN';
+    }
 
     // 获取翻译文本
     function t(key) {
       return i18n[currentLang]?.[key] || i18n['zh-CN'][key] || key;
     }
 
-    // 切换语言（循环切换：中文 -> 英文 -> 日文 -> 中文）
+    // 切换语言（在报告支持的语言间循环）
     function toggleLanguage() {
-      const currentIndex = SUPPORTED_LANGS.indexOf(currentLang);
-      const nextIndex = (currentIndex + 1) % SUPPORTED_LANGS.length;
-      currentLang = SUPPORTED_LANGS[nextIndex];
+      if (!isMultilingual) return;
+      const currentIndex = reportLangs.indexOf(currentLang);
+      const nextIndex = (currentIndex + 1) % reportLangs.length;
+      currentLang = reportLangs[nextIndex];
       localStorage.setItem('reader-lang', currentLang);
       updateLanguageUI();
       updatePageText();
@@ -1199,10 +1309,16 @@
 
     // 更新语言UI
     function updateLanguageUI() {
+      // 同步 <html lang>
+      document.documentElement.lang = currentLang;
       const langBtn = document.getElementById('langBtn');
-      const langIcon = document.getElementById('langIcon');
-      if (langIcon) {
-        langIcon.textContent = LANG_LABELS[currentLang] || '中';
+      if (langBtn) {
+        // 非多语言报告隐藏语言按钮
+        langBtn.style.display = isMultilingual ? '' : 'none';
+        const langIcon = document.getElementById('langIcon');
+        if (langIcon) {
+          langIcon.textContent = LANG_LABELS[currentLang] || '中';
+        }
       }
     }
 
@@ -1269,6 +1385,13 @@
     const urlParams = new URLSearchParams(window.location.search);
     const reportId = urlParams.get('id') || 'report-001';
     const report = REPORTS.find(r => r.id === reportId) || REPORTS[0];
+
+    // 报告是否支持多语言（只有声明 multilingual.enabled 的报告才显示语言按钮）
+    const isMultilingual = !!(report && report.multilingual && report.multilingual.enabled);
+    // 报告支持的语言（未声明时回退为默认三语循环）
+    const reportLangs = isMultilingual && Array.isArray(report.multilingual.languages)
+      ? report.multilingual.languages.map(l => l.code)
+      : ['zh-CN'];
     
     // 报告数据管理
     let reportManifest = null;  // 报告清单
@@ -1449,15 +1572,14 @@
 
     // 获取章节标题（根据语言）
     function getSectionTitle(section) {
-      // 优先使用中文，如果没有则使用英文，最后使用默认
       if (section.title_i18n) {
+        // 优先当前语言，回退中文，最后取第一个可用语言
+        if (section.title_i18n[currentLang]) {
+          return section.title_i18n[currentLang];
+        }
         if (section.title_i18n['zh-CN']) {
           return section.title_i18n['zh-CN'];
         }
-        if (section.title_i18n['en']) {
-          return section.title_i18n['en'];
-        }
-        // 返回第一个可用的语言
         const firstLang = Object.keys(section.title_i18n)[0];
         if (firstLang) {
           return section.title_i18n[firstLang];
@@ -1468,15 +1590,14 @@
 
     // 获取章节内容（根据语言）
     function getSectionContent(section) {
-      // 优先使用中文，如果没有则使用英文，最后使用默认
       if (section.content_i18n) {
+        // 优先当前语言，回退中文，最后取第一个可用语言
+        if (section.content_i18n[currentLang]) {
+          return section.content_i18n[currentLang];
+        }
         if (section.content_i18n['zh-CN']) {
           return section.content_i18n['zh-CN'];
         }
-        if (section.content_i18n['en']) {
-          return section.content_i18n['en'];
-        }
-        // 返回第一个可用的语言
         const firstLang = Object.keys(section.content_i18n)[0];
         if (firstLang) {
           return section.content_i18n[firstLang];
@@ -1534,7 +1655,8 @@
     }
 
     // 渲染当前页
-    async function renderPage(page) {
+    async function renderPage(page, options = {}) {
+      const smoothScroll = options.smooth !== false;
       currentPage = page;
       
       const startIdx = (page - 1) * sectionsPerPage;
@@ -1582,7 +1704,7 @@
       updateTOCHighlight();
       
       // 滚动到顶部
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: smoothScroll ? 'smooth' : 'auto' });
     }
 
     // 切换页面
@@ -1604,18 +1726,26 @@
     async function scrollToSection(idx) {
       // 确保章节已加载
       await ensureSectionsLoaded(idx);
-      
+
+      // 目标章节所在页
+      const targetPage = Math.floor(idx / sectionsPerPage) + 1;
+
+      // 目标章节不在当前渲染页时，先跳转到对应页（否则 DOM 中不存在该元素）
+      if (targetPage !== currentPage) {
+        await renderPage(targetPage, { smooth: false });
+      }
+
       const el = document.getElementById(`section-${idx}`);
       if (el) {
         el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        // 更新当前页
-        const page = Math.floor(idx / sectionsPerPage) + 1;
-        if (page !== currentPage) {
-          currentPage = page;
-          updateProgressDots(page);
-          updateTOCHighlight();
-        }
       }
+      // 更新当前页状态
+      currentPage = targetPage;
+      updateProgressDots(currentPage);
+      updateTOCHighlight();
+
+      // 移动端自动收起侧栏
+      closeSidebar();
     }
 
     // 更新进度条
@@ -1649,7 +1779,23 @@
     // 切换边栏（移动端）
     function toggleSidebar() {
       const sidebar = document.getElementById('sidebar');
-      sidebar.classList.toggle('open');
+      const overlay = document.getElementById('sidebarOverlay');
+      const open = sidebar.classList.toggle('open');
+      if (overlay) {
+        overlay.classList.toggle('visible', open);
+      }
+    }
+
+    // 关闭边栏（移动端）
+    function closeSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebarOverlay');
+      if (sidebar) {
+        sidebar.classList.remove('open');
+      }
+      if (overlay) {
+        overlay.classList.remove('visible');
+      }
     }
 
     // 切换主题

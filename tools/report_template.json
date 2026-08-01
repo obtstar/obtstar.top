@@ -1,0 +1,54 @@
+{
+  "id": "my-first-report",
+  "title": "我的第一份研究报告",
+  "subtitle": "可选：副标题",
+  "category": "future",
+  "tags": ["AI", "研究"],
+  "pages": 12,
+  "date": "2026-08-01",
+  "summary": "一段话概括本报告的核心内容，将展示在报告卡片与详情页。",
+  "highlights": [
+    "亮点一",
+    "亮点二",
+    "亮点三"
+  ],
+  "chapters": [
+    { "title": "第一章：引言", "desc": "章节描述，展示在详情页目录" },
+    { "title": "第二章：主体", "desc": "章节描述" },
+    { "title": "第三章：结论", "desc": "章节描述" }
+  ],
+  "featured": false,
+  "source": "ObtStar 研究院",
+  "color": "#4F46E5",
+  "multilingual": {
+    "enabled": false,
+    "default": "zh-CN",
+    "languages": [
+      { "code": "zh-CN", "name": "中文", "nameEn": "Chinese" }
+    ]
+  },
+  "content": [
+    {
+      "title": "第一章：引言",
+      "level": 1,
+      "html": "<p>这里写正文段落，支持 <strong>加粗</strong>、<em>斜体</em>、<a href=\"https://example.com\">链接</a> 等 HTML。</p><ul><li>列表项一</li><li>列表项二</li></ul>"
+    },
+    {
+      "title": "1.1 小节标题",
+      "level": 2,
+      "html": "<p>小节的正文内容。表格示例：</p><table><thead><tr><th>列A</th><th>列B</th></tr></thead><tbody><tr><td>1</td><td>2</td></tr></tbody></table>",
+      "title_i18n": { "en": "1.1 Subsection Title" },
+      "content_i18n": { "en": "<p>English content for this subsection.</p>" }
+    },
+    {
+      "title": "第二章：主体",
+      "level": 1,
+      "html": "<p>报告主体内容。图表、图片等建议用 HTML 内联样式实现，移动端会自动适配宽度。</p>"
+    },
+    {
+      "title": "第三章：结论",
+      "level": 1,
+      "html": "<p>结论与展望。</p>"
+    }
+  ]
+}
