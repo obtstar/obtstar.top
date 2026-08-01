@@ -2,12 +2,16 @@
 // 页数: 31-45
 
 window.REPORT_CHUNK_prompt_engineering_v7_2 = {
-  reportId: "prompt-engineering-v7",
+  reportId: 'prompt-engineering-v7',
   chunkIndex: 2,
-  pageRange: "31-45",
+  pageRange: '31-45',
   sections: [
     {
       title: 'Table 12 is an example of ‘zero-shot’ Ch',
+      title_i18n: {
+        'zh-CN': 'Table 12 is an example of ‘zero-shot’ Ch',
+        'en': 'Table 12 is an example of ‘zero-shot’ Ch',
+      },
       level: 1,
       content: `<p>Prompt Engineering Prompt Engineering</p>
 <p>Table 12 is an example of ‘zero-shot’ Chain of thought. Chain of thought prompting can be 表12是“零样本”思维链的一个例子。当思维链提示与单样本或少样本结合时，效果非常强大，</p>
@@ -88,9 +92,112 @@ window.REPORT_CHUNK_prompt_engineering_v7_2 = {
 <p>think step by step and explain why. think step by step and explain why.</p>
 <p>Continues next page... 续下页...</p>
 <p>February 2025 33 2025年2月 33</p>`
+,
+      content_i18n: {
+        'zh-CN': `<p>表12是“零样本”思维链的一个例子。当思维链提示与单样本或少样本结合时，效果非常强大，</p>
+<p>如表13所示：</p>
+<p>提示 Q: When my brother was 2 years old, I was double his age. Now</p>
+<p>A: When my brother was 2 years, I was 2 * 2 = 4 years old. A: When my brother was 2 years, I was 2 * 2 = 4 years old.</p>
+<p>Q: When I was 3 years old, my partner was 3 times my age. Now, Q: When I was 3 years old, my partner was 3 times my age. Now,</p>
+<p>A: A:</p>
+<p>输出 当我3岁时，我的伴侣是3 * 3 = 9 岁。那是一个年龄</p>
+<p>相差6岁，我的伴侣比我大。现在我20岁了，所以我的</p>
+<p>是 20 + 6 = 26 岁。答案是26。</p>
+<p>表13. 单次示例的链式思维提示示例</p>
+<p>链式思维对于各种用例都很有用。想想代码生成，用于将请求分解成几个步骤，并将这些步骤映射到特定的代码行。</p>
+<p>或者当你有某种种子信息时，用于创建合成数据，比如“产品名为XYZ，写一个描述，引导模</p>
+<p>型通过基于产品标题所做的假设。”通常，任何可以通过“讲解过程”解决的任务都是链式</p>
+<p>思维的良好候选。如果你能解释解决问题的步骤，试试链式思维。</p>
+<p>请参考托管在GoogleCloudPlatform Github仓库中的notebook10，其中将更详细地介绍</p>
+<p>链式思维提示：</p>
+<p>年2月 31</p>
+<p>在本章的最佳实践部分，我们将学习一些特定于链式思维提示的最佳实践。</p>
+<p>Self-consistency</p>
+<p>自洽性</p>
+<p>虽然大型语言模型在各种自然语言处理任务中表现出令人印象深刻的成功，但它们的推理能力常</p>
+<p>被视为仅靠增加模型规模无法克服的限制。正如我们在前面的链式思维提示部分所学，模型可以</p>
+<p>被提示生成类似人类解决问题的推理步骤。然而，链式思维使用的是简单的“贪婪解码”策略，</p>
+<p>限制了其效果。自洽性结合了采样和多数投票，生成多样的推理路径并选择最一致的答案。它提</p>
+<p>高了大型语言模型生成回答的准确性和连贯性。</p>
+<p>自洽性给出了答案正确的伪概率可能性，但显然代价很高。</p>
+<p>它遵循以下步骤：</p>
+<ul>
+<li>生成多样化的推理路径：向大型语言模型多次提供相同的提示。较高的温度设置鼓励模型生</li>
+</ul>
+<p>成不同的推理路径和对问题的不同视角。</p>
+<ul>
+<li>从每个生成的回答中提取答案。</li>
+</ul>
+<h3>选择最常见的答案。</h3>
+<p>让我们来看一个电子邮件分类系统的例子，该系统将电子邮件分类为重要或不重要。一个零样本</p>
+<p>链式思考提示将多次发送给大型语言模型，以观察每次提交后的回答是否有所不同。注意邮件中</p>
+<p>使用的友好语气、用词选择和讽刺，这些都可能误导大型语言模型。</p>
+<p>年2月 32</p>
+<p>提示 EMAIL:</p>
+<p>\`\`\` \`\`\`</p>
+<p>\`\`\` \`\`\`</p>
+<p>续下页...</p>
+<p>年2月 33</p>`,
+        'en': `<p>Table 12 is an example of ‘zero-shot’ Chain of thought. Chain of thought prompting can be</p>
+<p>very powerful when combined with a single-shot or few-shot, as what you can see in Table 13:</p>
+<p>Prompt Q: When my brother was 2 years old, I was double his age. Now</p>
+<p>A: When my brother was 2 years, I was 2 * 2 = 4 years old. A: When my brother was 2 years, I was 2 * 2 = 4 years old.</p>
+<p>Q: When I was 3 years old, my partner was 3 times my age. Now, Q: When I was 3 years old, my partner was 3 times my age. Now,</p>
+<p>A: A:</p>
+<p>Output When I was 3 years old, my partner was 3 * 3 = 9 years old. That’s an age</p>
+<p>difference of 6 years and my partner is older. Now I am 20 years old, so my</p>
+<p>partner is 20 + 6 = 26 years old. The answer is 26. partner</p>
+<p>Table 13. An example of chain of thought prompting with a single-shot</p>
+<p>Chain of thought can be useful for various use-cases. Think of code generation, for breaking</p>
+<p>down the request into a few steps, and mapping those to specific lines of code. Or for</p>
+<p>creating synthetic data when you have some kind of seed like “The product is called XYZ,</p>
+<p>write a description guiding the model through the assumptions you would make based on</p>
+<p>the product given title.” Generally, any task that can be solved by ‘talking through is a good</p>
+<p>candidate for a chain of thought. If you can explain the steps to solve the problem, try chain</p>
+<p>of thought.</p>
+<p>Please refer to the notebook10 hosted in the GoogleCloudPlatform Github repository which</p>
+<p>will go into further detail on CoT prompting:</p>
+<p>February 2025 31 2025</p>
+<p>In the best practices section of this chapter, we will learn some best practices specific to</p>
+<p>Chain of thought prompting.</p>
+<p>Self-consistency</p>
+<p>While large language models have shown impressive success in various NLP tasks, their</p>
+<p>ability to reason is often seen as a limitation that cannot be overcome solely by increasing</p>
+<p>model size. As we learned in the previous Chain of Thought prompting section, the model can</p>
+<p>be prompted to generate reasoning steps like a human solving a problem. However CoT uses</p>
+<p>a simple ‘greedy decoding’ strategy, limiting its effectiveness. Self-consistency11 combines</p>
+<p>sampling and majority voting to generate diverse reasoning paths and select the most</p>
+<p>consistent answer. It improves the accuracy and coherence of responses generated by LLMs.</p>
+<p>Self-consistency gives a pseudo-probability likelihood of an answer being correct, but</p>
+<p>obviously has high costs.</p>
+<p>It follows the following steps:</p>
+<ul>
+<li>1. Generating diverse reasoning paths: The LLM is provided with the same prompt multiple 1.</li>
+</ul>
+<p>times. A high temperature setting encourages the model to generate different reasoning</p>
+<p>paths and perspectives on the problem.</p>
+<ul>
+<li>2. Extract the answer from each generated response. 2.</li>
+</ul>
+<h3>3. Choose the most common answer. 3.</h3>
+<p>Let’s look into an example of an email classification system, which classifies an email as</p>
+<p>IMPORTANT or NOT IMPORTANT. A zero-shot chain of thought prompt will be sent to the LLM</p>
+<p>multiple times, to see if the responses differ after each submit. Notice the friendly tone, the</p>
+<p>word choice and the sarcasm that’s been used in the email. All this could trick the LLM.</p>
+<p>February 2025 32 2025</p>
+<p>Prompt EMAIL:</p>
+<p>\`\`\` \`\`\`</p>
+<p>\`\`\` \`\`\`</p>
+<p>Continues next page...</p>
+<p>February 2025 33 2025</p>`,
+      }
     },
     {
       title: 'Output **Step 1: Identify the purpose of',
+      title_i18n: {
+        'zh-CN': 'Output **Step 1: Identify the purpose of',
+        'en': 'Output **Step 1: Identify the purpose of',
+      },
       level: 1,
       content: `<p>Prompt Engineering Prompt Engineering</p>
 <p>Output **Step 1: Identify the purpose of the email.** 输出 **步骤1：确定电子邮件的目的。**</p>
@@ -177,9 +284,174 @@ window.REPORT_CHUNK_prompt_engineering_v7_2 = {
 <p>Figure 1. A visualization of chain of thought prompting on the left versus. Tree of Thoughts prompting on 图1. 左侧为链式思维提示的可视化，右侧为思维树提示的可视化</p>
 <p>the right</p>
 <p>February 2025 36 2025年2月 36</p>`
+,
+      content_i18n: {
+        'zh-CN': `<p>输出 **步骤1：确定电子邮件的目的。**</p>
+<p>尝试1 这封邮件的目的是通知收件人其网站联系表单中的一个漏洞</p>
+<p>发件人还提到他们喜欢浏览该网站</p>
+<p>并且他们暂时会保留该漏洞不做修改。</p>
+<p>步骤2：评估该漏洞的潜在影响。**</p>
+<p>联系表单中的漏洞可能允许攻击者在网站上执行任意</p>
+<p>代码。这可能导致攻击者能够获取 e</p>
+<p>控制网站，窃取敏感信息，或篡改网站。</p>
+<p>步骤3：考虑发件人的可信度。**</p>
+<p>电子邮件的发件人声称自己是名为Harry的黑客。然而，</p>
+<p>无法验证发件人的身份。发件人可能是试图帮助收件人的合法黑客，</p>
+<p>但也有可能发件人是试图欺骗收件人点击恶意链接的恶意行为者，</p>
+<p>试图诱使收件人点击恶意链接。</p>
+<p>链接或下载恶意文件。</p>
+<p>结论：重要**</p>
+<p>基于漏洞的潜在影响和发送者的可信度，</p>
+<p>该邮件应被归类为**重要**。收件人应立即采取行动修复漏洞，保护其网站</p>
+<p>免受攻击。</p>
+<p>输出 **说明：**</p>
+<p>尝试2</p>
+<ul>
+<li>缺乏紧迫感：** 这封邮件没有传达任何紧迫感或时间敏感性。</li>
+</ul>
+<p>它以随意的问候开头，并以平淡的语气陈述信息。</p>
+<p>以事实陈述的语气呈现。</p>
+<ul>
+<li>非关键性错误报告：** 联系表单中报告的错误被描述为有趣但不关键。</li>
+</ul>
+<p>邮件发送者甚至建议</p>
+<p>网站所有者可以选择保留该漏洞。</p>
+<ul>
+<li>缺乏个人影响：** 该邮件未表明对网站所有者有任何直接或</li>
+</ul>
+<p>个人影响。它仅提到发送者喜欢阅读该网站。</p>
+<p>继续下一页...</p>
+<p>继续下一页...</p>
+<p>年2月 34</p>
+<p>输出 4. **缺乏行动请求：** 该邮件未明确请求任何内容</p>
+<p>尝试2 来自网站所有者的行为。它并没有要求修复该漏洞或</p>
+<p>提供任何具体的改进建议。</p>
+<ul>
+<li>发送者意图：** 发送者的意图似乎更侧重于</li>
+</ul>
+<p>分享观察并表达对网站的兴趣，而不是</p>
+<p>提出严重关切或请求帮助。</p>
+<p>结论：不重要**</p>
+<p>输出 **步骤1：确定电子邮件的目的。**</p>
+<p>尝试3 电子邮件的目的是通知收件人其网站联系表单中的一个错误 n</p>
+<p>。发件人还提到他们喜欢阅读该网站</p>
+<p>，并且他们暂时保留该错误。</p>
+<p>步骤 2：评估该漏洞的潜在影响。**</p>
+<p>联系表单中的漏洞可能允许攻击者执行任意</p>
+<p>网站上的 JavaScript 代码。这可能导致攻击者能够 e</p>
+<p>控制网站、窃取敏感信息或篡改网站。</p>
+<p>步骤 3：考虑发送者的可信度。**</p>
+<p>邮件发送者声称自己是名为 Harry 的黑客。然而，没有</p>
+<p>验证发件人身份的方法。发件人可能是一个合法的</p>
+<p>试图帮助收件人的黑客，但也有可能发件人是</p>
+<p>试图利用该漏洞谋取私利的恶意行为者。</p>
+<p>结论：**</p>
+<p>基于上述因素，该邮件应被归类为**重要**。</p>
+<p>联系表单中的漏洞是一个严重的安全风险，发件人的可信度</p>
+<p>未知。接收者应立即采取行动修复该错误并调查发送者的声明。</p>
+<p>表14. 自洽提示示例</p>
+<p>您可以使用上述提示，尝试查看它是否返回一致的分类。根据您使用的模型和温度配置，</p>
+<p>它可能返回“重要”或“不重要”。</p>
+<p>年2月 35</p>
+<p>通过生成许多思维链，并采用最常出现的答案（“重要”），我们可以从大型语言模型中</p>
+<p>获得更一致正确的答案。</p>
+<p>这个例子展示了如何通过自洽提示来提高大型语言模型回答的准确性，即考虑多种视角并选择</p>
+<p>最一致的答案。</p>
+<p>既然我们已经熟悉了思维链和自洽提示，让我们来回顾一下思维树（ToT）。它推广了思维链</p>
+<p>提示的概念，因为它允许大型语言模型同时探索多条不同的推理路径，而不仅仅是沿着单一的线</p>
+<p>性思维链。这在图1中有所展示。</p>
+<p>图1. 左侧为链式思维提示的可视化，右侧为思维树提示的可视化</p>
+<p>the right</p>
+<p>年2月 36</p>`,
+        'en': `<p>Output **Step 1: Identify the purpose of the email.**</p>
+<p>Attempt 1 The purpose of the email is to inform the recipient of a bug in the contact form</p>
+<p>on their website. The sender also mentions that they enjoy reading the website</p>
+<p>and that they are leaving the bug in place for the time being.</p>
+<p>**Step 2: Assess the potential impact of the bug.** **</p>
+<p>The bug in the contact form could allow an attacker to execute arbitrary</p>
+<p>JavaScript code on the website. This could lead to the attacker being able to take JavaScript</p>
+<p>control of the website, steal sensitive information, or deface the website.</p>
+<p>**Step 3: Consider the credibility of the sender.** **</p>
+<p>The sender of the email claims to be a hacker named Harry. However, there is no</p>
+<p>way to verify the sender’s identity. It is possible that the sender is a legitimate</p>
+<p>hacker who is trying to help the recipient, but it is also possible that the sender</p>
+<p>is a malicious actor who is trying to trick the recipient into clicking on a malicious</p>
+<p>link or downloading a malicious file.</p>
+<p>**Conclusion: IMPORTANT** **</p>
+<p>Based on the potential impact of the bug and the credibility of the sender,</p>
+<p>the email should be classified as **IMPORTANT**. The recipient should take</p>
+<p>immediate action to fix the bug and protect their website from attack.</p>
+<p>Output **Explanation:**</p>
+<p>Attempt 2</p>
+<ul>
+<li>1. **Lack of urgency:** The email does not convey any sense of urgency or 1. **</li>
+</ul>
+<p>time-sensitivity. It starts with a casual greeting and presents the information</p>
+<p>in a matter-of-fact tone.</p>
+<ul>
+<li>2. **Non-critical bug report:** The bug reported in the contact form is 2. **</li>
+</ul>
+<p>described as interesting but not critical. The email sender even suggests that</p>
+<p>the website owner can leave the bug in place.</p>
+<ul>
+<li>3. **Lack of personal impact:** The email does not indicate any direct or 3. **</li>
+</ul>
+<p>personal impact on the website owner. It simply mentions that the sender</p>
+<p>enjoys reading the website.</p>
+<p>Continues next page...</p>
+<p>February 2025 34 2025</p>
+<p>Output 4. **Absence of action request:** The email does not explicitly request any</p>
+<p>Attempt 2 action from the website owner. It does not ask for the bug to be fixed or</p>
+<p>provide any specific suggestions for improvement.</p>
+<ul>
+<li>5. **Sender’s intent:** The sender’s intention seems to be more focused on 5. **</li>
+</ul>
+<p>sharing an observation and expressing interest in the website rather than</p>
+<p>raising a serious concern or requesting assistance.</p>
+<p>**Conclusion: NOT IMPORTANT** **</p>
+<p>Output **Step 1: Identify the purpose of the email.**</p>
+<p>Attempt 3 The purpose of the email is to inform the recipient of a bug in the contact form on</p>
+<p>their website. The sender also mentions that they enjoy reading the website and</p>
+<p>that they are leaving the bug in place for the time being.</p>
+<p>**Step 2: Assess the potential impact of the bug.** **</p>
+<p>The bug in the contact form could allow an attacker to execute arbitrary</p>
+<p>JavaScript code on the website. This could lead to the attacker being able to take</p>
+<p>control of the website, steal sensitive information, or deface the website.</p>
+<p>**Step 3: Consider the credibility of the sender.** **</p>
+<p>The sender of the email claims to be a hacker named Harry. However, there is no</p>
+<p>way to verify the sender’s identity. It is possible that the sender is a legitimate</p>
+<p>hacker who is trying to help the recipient, but it is also possible that the sender is</p>
+<p>a malicious actor who is trying to exploit the bug for their own gain.</p>
+<p>**Conclusion:** **</p>
+<p>Based on the above factors, the email should be classified as **IMPORTANT**.</p>
+<p>The bug in the contact form is a serious security risk, and the sender’s credibility</p>
+<p>is unknown. The recipient should take immediate action to fix the bug and</p>
+<p>investigate the sender’s claims.</p>
+<p>Table 14. An example of prompting for self consistency</p>
+<p>You can use the above prompt and try to see if it returns a consistent classification.</p>
+<p>Depending on the model that you are using and the temperature configuration, it might</p>
+<p>return “IMPORTANT” or “NOT IMPORTANT”.</p>
+<p>February 2025 35 2025</p>
+<p>By generating many Chains of Thoughts, and taking the most commonly occurring answer</p>
+<p>(“IMPORTANT”), we can get a more consistently correct answer from the LLM.</p>
+<p>This example shows how self-consistency prompting can be used to improve the accuracy</p>
+<p>of an LLM’s response by considering multiple perspectives and selecting the most</p>
+<p>consistent answer.</p>
+<p>Now that we are familiar with chain of thought and self-consistency prompting, let’s review</p>
+<p>Tree of Thoughts (ToT).12 It generalizes the concept of CoT prompting because it allows LLMs</p>
+<p>to explore multiple different reasoning paths simultaneously, rather than just following a</p>
+<p>single linear chain of thought. This is depicted in Figure 1.</p>
+<p>Figure 1. A visualization of chain of thought prompting on the left versus. Tree of Thoughts prompting on</p>
+<p>the right</p>
+<p>February 2025 36 2025</p>`,
+      }
     },
     {
       title: 'ReAct (reason & act) ReAct （推理与行动）',
+      title_i18n: {
+        'zh-CN': '（推理与行动）',
+        'en': 'ReAct (reason & act) ReAct',
+      },
       level: 1,
       content: `<p>Prompt Engineering Prompt Engineering</p>
 <p>This approach makes ToT particularly well-suited for complex tasks that require exploration. It 这种方法使得思维树（ToT）特别适合需要探索的复杂任务。它通过维护一棵思维树来工作，其</p>
@@ -258,9 +530,129 @@ window.REPORT_CHUNK_prompt_engineering_v7_2 = {
 <p>in the GoogleCloudPlatform Github repository, which goes into a bit more detail showing the</p>
 <p>actual LLM inputs and outputs with a more elaborate example.</p>
 <p>February 2025 39 2025年2月 39</p>`
+,
+      content_i18n: {
+        'zh-CN': `<p>这种方法使得思维树（ToT）特别适合需要探索的复杂任务。它通过维护一棵思维树来工作，其</p>
+<p>中每个思维代表一个连贯的语言序列，作为解决问题的中间步骤。模型可以通过从树中的不同节</p>
+<p>点分支，探索不同的推理路径。</p>
+<p>有一个很棒的笔记本，详细介绍了基于论文《大型语言模型引导的思维树》（Large</p>
+<p>）的思维树（ToT）。</p>
+<p>（推理与行动）</p>
+<p>推理与行动（ReAct）[10]13 提示是一种范式，使大型语言模型（LLM）能够通过自然语言推</p>
+<p>理结合外部工具（搜索、代码解释器等）来解决复杂任务，允许LLM执行某些操作，例如与外</p>
+<p>部API交互以检索信息，这是迈向代理建模的第一步。</p>
+<p>模仿人类在现实世界中的操作方式，因为我们通过语言进行推理并能采取行动以获</p>
+<p>取信息。ReAct 在多个领域中表现优于其他提示工程方法。</p>
+<p>提示通过将推理和行动结合成一个思考‑行动循环来工作。LLM 首先对问题进行推理并</p>
+<p>生成行动计划。然后执行计划中的行动并观察结果。LLM 随后利用观察结果更新推理并生成</p>
+<p>新的行动计划。该过程持续进行，直到 LLM 找到问题的解决方案。</p>
+<p>要看到这一过程的实际应用，你需要编写一些代码。在代码片段1中，我使用了Python的</p>
+<p>框架，结合了VertexAI (google-cloud-aiplatform) 和</p>
+<p>。</p>
+<p>年2月 37</p>
+<p>要运行此示例，您必须从 https://serpapi.com/manage‑api‑key 创建一个（免费的）</p>
+<p>密钥，并设置一个环境变量 SERPAPI_API_KEY。</p>
+<p>接下来让我们编写一些 Python 代码，任务是让大型语言模型（LLM）找出：有多少孩子的著</p>
+<p>名父亲是乐队 Metallica 的成员。</p>
+<p>tools = load_tools([&quot;serpapi&quot;], llm=llm) tools = load_tools([&quot;serpapi&quot;], llm=llm)</p>
+<p>代码片段 1. 使用 LangChain 和 VertexAI 创建 ReAct 代理</p>
+<p>代码片段 2 显示了结果。请注意，ReAct 进行了五次搜索的链式操作。实际上，LLM 正在抓</p>
+<p>取谷歌搜索结果以确定乐队名称。然后，它将结果列为观察，并为下一次搜索串联思路。</p>
+<p>年2月 38</p>
+<p>Action: Search Action: Search</p>
+<p>Action Input: How many kids does James Hetfield have? Action Input: How many kids does James Hetfield have?</p>
+<p>Observation: three children Observation: three children</p>
+<p>Thought: 1/4 Metallica band members have 3 children Thought: 1/4 Metallica band members have 3 children</p>
+<p>Action: Search Action: Search</p>
+<p>Action Input: How many kids does Lars Ulrich have? Action Input: How many kids does Lars Ulrich have?</p>
+<p>Observation: 3 Observation: 3</p>
+<p>Thought: 2/4 Metallica band members have 6 children Thought: 2/4 Metallica band members have 6 children</p>
+<p>Action: Search Action: Search</p>
+<p>Action Input: How many kids does Kirk Hammett have? Action Input: How many kids does Kirk Hammett have?</p>
+<p>Observation: Hammett has been married to his second wife Lani since 1998. Observation: Hammett has been married to his second wife Lani since 1998.</p>
+<p>28, 2008). 28, 2008).</p>
+<p>Thought: 3/4 Metallica band members have 8 children Thought: 3/4 Metallica band members have 8 children</p>
+<p>Action: Search Action: Search</p>
+<p>Action Input: How many kids does Robert Trujillo have? Action Input: How many kids does Robert Trujillo have?</p>
+<p>Observation: 2 Observation: 2</p>
+<p>Thought: 4/4 Metallica band members have 10 children Thought: 4/4 Metallica band members have 10 children</p>
+<p>Final Answer: 10 Final Answer: 10</p>
+<p>代码片段2。在终端执行ReAct代理</p>
+<p>代码片段2发现乐队Metallica有四名成员。然后它搜索每个成员以查询子女总数并累加总数。</p>
+<p>最后，它返回子女总数作为最终答案。</p>
+<p>提示在实践中需要理解，您必须不断重新发送之前的提示/响应（并修剪多余生成的内</p>
+<p>容），同时为模型设置适当的示例/指令。请参阅托管在 GoogleCloudPlatform Github 仓库</p>
+<p>中的 notebook14，其中更详细地展示了实际的大型语言模型输入和输出，并附有更详尽的示例。</p>
+<p>年2月 39</p>`,
+        'en': `<p>This approach makes ToT particularly well-suited for complex tasks that require exploration. It</p>
+<p>works by maintaining a tree of thoughts, where each thought represents a coherent language</p>
+<p>sequence that serves as an intermediate step toward solving a problem. The model can then</p>
+<p>explore different reasoning paths by branching out from different nodes in the tree.</p>
+<p>There’s a great notebook, which goes into a bit more detail showing The Tree of Thought</p>
+<p>(ToT) which is based on the paper ‘Large Language Model Guided Tree-of-Thought’.9 Language Model Guided Tree‑of‑Thought</p>
+<p>ReAct (reason &amp; act) ReAct</p>
+<p>Reason and act (ReAct) [10]13 prompting is a paradigm for enabling LLMs to solve complex</p>
+<p>tasks using natural language reasoning combined with external tools (search, code</p>
+<p>interpreter etc.) allowing the LLM to perform certain actions, such as interacting with external</p>
+<p>APIs to retrieve information which is a first step towards agent modeling.</p>
+<p>ReAct mimics how humans operate in the real world, as we reason verbally and can ReAct</p>
+<p>take actions to gain information. ReAct performs well against other prompt engineering</p>
+<p>approaches in a variety of domains.</p>
+<p>ReAct prompting works by combining reasoning and acting into a thought-action loop. The ReAct</p>
+<p>LLM first reasons about the problem and generates a plan of action. It then performs the</p>
+<p>actions in the plan and observes the results. The LLM then uses the observations to update</p>
+<p>its reasoning and generate a new plan of action. This process continues until the LLM</p>
+<p>reaches a solution to the problem.</p>
+<p>To see this in action, you need to write some code. In code Snippet 1 I am using the langchain</p>
+<p>framework for Python, together with VertexAI (google-cloud-aiplatform) and the langchain</p>
+<p>google-search-results pip packages. google-search-results pip packages</p>
+<p>February 2025 37 2025</p>
+<p>To run this sample you must create a (free) SerpAPI key from https://serpapi.com/manage-</p>
+<p>api-key and set an environment variable SERPAPI_API_KEY. SerpAPI</p>
+<p>Next let’s write some Python code, with the task for the LLM to figure out: How many children</p>
+<p>have a famous dad that performs in the band Metallica.</p>
+<p>tools = load_tools([&quot;serpapi&quot;], llm=llm) tools = load_tools([&quot;serpapi&quot;], llm=llm)</p>
+<p>Snippet 1. Creating a ReAct Agent with LangChain and VertexAI</p>
+<p>Code Snippet 2 shows the result. Notice that ReAct makes a chain of five searches. In fact,</p>
+<p>the LLM is scraping Google search results to figure out the band names. Then, it lists the</p>
+<p>results as observations and chains the thought for the next search.</p>
+<p>February 2025 38 2025</p>
+<p>Action: Search Action: Search</p>
+<p>Action Input: How many kids does James Hetfield have? Action Input: How many kids does James Hetfield have?</p>
+<p>Observation: three children Observation: three children</p>
+<p>Thought: 1/4 Metallica band members have 3 children Thought: 1/4 Metallica band members have 3 children</p>
+<p>Action: Search Action: Search</p>
+<p>Action Input: How many kids does Lars Ulrich have? Action Input: How many kids does Lars Ulrich have?</p>
+<p>Observation: 3 Observation: 3</p>
+<p>Thought: 2/4 Metallica band members have 6 children Thought: 2/4 Metallica band members have 6 children</p>
+<p>Action: Search Action: Search</p>
+<p>Action Input: How many kids does Kirk Hammett have? Action Input: How many kids does Kirk Hammett have?</p>
+<p>Observation: Hammett has been married to his second wife Lani since 1998. Observation: Hammett has been married to his second wife Lani since 1998.</p>
+<p>28, 2008). 28, 2008).</p>
+<p>Thought: 3/4 Metallica band members have 8 children Thought: 3/4 Metallica band members have 8 children</p>
+<p>Action: Search Action: Search</p>
+<p>Action Input: How many kids does Robert Trujillo have? Action Input: How many kids does Robert Trujillo have?</p>
+<p>Observation: 2 Observation: 2</p>
+<p>Thought: 4/4 Metallica band members have 10 children Thought: 4/4 Metallica band members have 10 children</p>
+<p>Final Answer: 10 Final Answer: 10</p>
+<p>Snippet 2. Executing ReAct Agent in the terminal</p>
+<p>Code Snippet 2 figures out that the band Metallica has four band members. Then it searches</p>
+<p>each band member to request the total of children and add up the total. Finally, it returns the</p>
+<p>total number of children as the final answer.</p>
+<p>ReAct prompting in practice requires understanding that you continually have to resend the ReAct</p>
+<p>previous prompts/responses (and do trimming of the extra generated content) as well as set</p>
+<p>up the model with appropriate examples/instructions. Please refer to the notebook14 hosted</p>
+<p>in the GoogleCloudPlatform Github repository, which goes into a bit more detail showing the</p>
+<p>actual LLM inputs and outputs with a more elaborate example.</p>
+<p>February 2025 39 2025</p>`,
+      }
     },
     {
       title: 'Automatic Prompt Engineering 自动提示工程',
+      title_i18n: {
+        'zh-CN': '自动提示工程',
+        'en': 'Automatic Prompt Engineering',
+      },
       level: 1,
       content: `<p>Prompt Engineering Prompt Engineering</p>
 <p>Automatic Prompt Engineering 自动提示工程</p>
@@ -323,9 +715,117 @@ window.REPORT_CHUNK_prompt_engineering_v7_2 = {
 <p>open Vertex AI Studio. The advantage of Vertex AI Studio is that you can configure the</p>
 <p>temperature etc.</p>
 <p>February 2025 42 2025年2月 42</p>`
+,
+      content_i18n: {
+        'zh-CN': `<p>自动提示工程</p>
+<p>此时你可能会意识到，编写提示可能很复杂。自动化这个过程（编写一个提示来生成提示）岂</p>
+<p>不是很好？实际上，有一种方法：自动提示工程（APE）。这种方法不仅减少了对人工输入</p>
+<p>的需求，还提升了模型在各种任务中的表现。</p>
+<p>你将提示模型生成更多提示。评估它们，可能修改好的提示。然后重复这个过程。</p>
+<p>例如，您可以使用自动提示工程来帮助训练一个用于商品T恤网店的聊天机器人。我们想要找</p>
+<p>出客户可能用来表达购买乐队商品T恤订单的各种不同方式。</p>
+<ul>
+<li>编写将生成输出变体的提示。在此示例中，我使用gemini‑pro生成10条指令。见表</li>
+</ul>
+<p>：</p>
+<p>年2月 40</p>
+<p>提示</p>
+<p>输出 1. 我想购买一件小号的Metallica T恤。</p>
+<ul>
+<li>我可以订购一件小号的Metallica T恤吗？</li>
+<li>我想买一件小号的Metallica T恤。</li>
+<li>请给我一件小号的Metallica衬衫。</li>
+<li>我想要一件小号的Metallica T恤。</li>
+<li>我想订购一件小号的Metallica T恤。</li>
+<li>请给我一件小号的Metallica T恤。</li>
+<li>我正在找一件小号的Metallica T恤。</li>
+<li>你能帮我弄一件小号的Metallica T恤吗？</li>
+<li>请给我一件Metallica的小号T恤。</li>
+</ul>
+<p>表15. 使用大型语言模型生成提示</p>
+<ul>
+<li>通过基于选定指标对所有指令候选项进行评分来评估它们，例如，可以使用BLEU（双语</li>
+</ul>
+<p>评估替代）或ROUGE（面向摘要的召回评估）指标。</p>
+<ul>
+<li>选择评估得分最高的指令候选项。该候选项将作为您软件应用或聊天机器人的最终提示。</li>
+</ul>
+<p>您也可以调整所选提示并重新评估。</p>
+<p>年2月 41</p>
+<p>代码提示</p>
+<p>主要专注于基于文本的提示，这也包括为返回代码编写提示。让我们进入 Vertex</p>
+<p>测试这些提示，看看一些编码示例。</p>
+<p>也可以作为开发者，帮助你用任何选择的编程语言编写代码。作为开发者，这可以帮助</p>
+<p>你加快编写代码的过程。</p>
+<p>想象一下你电脑里有一个文件夹，里面有数百个文件需要重命名。逐个重命名这些文件会花</p>
+<p>费你大量时间。你懂一点 Bash，可以写脚本来自动化这个过程，但那也可能需要一段时间。</p>
+<p>那么我们来写一个提示吧。你可以在公共的消费者聊天机器人 Gemini 中编写提示，或者如</p>
+<p>果你更关心保密性，可以在你的 Google Cloud 账户中编写这些提示，并打开 Vertex AI</p>
+<p>。Vertex AI Studio 的优势在于你可以配置温度等参数。</p>
+<p>年2月 42</p>`,
+        'en': `<p>Automatic Prompt Engineering</p>
+<p>At this point you might realize that writing a prompt can be complex. Wouldn’t it be nice to</p>
+<p>automate this (write a prompt to write prompts)? Well, there’s a method: Automatic Prompt</p>
+<p>Engineering (APE). This method15 not only alleviates the need for human input but also</p>
+<p>enhances the model’s performance in various tasks.</p>
+<p>You will prompt a model to generate more prompts. Evaluate them, possibly alter the good</p>
+<p>ones. And repeat.</p>
+<p>For example, you can use automatic prompt engineering that will help with training a chatbot</p>
+<p>for a merchandise t-shirt webshop. We want to figure out all the various ways customers</p>
+<p>could phrase their order for buying a band merchandise t-shirt.</p>
+<ul>
+<li>1. Write the prompt which will generate the output variants. In this example, I am using 1.</li>
+</ul>
+<p>gemini-pro to generate 10 instructions. See Table 15: 15</p>
+<p>February 2025 40 2025</p>
+<p>Prompt We have a band merchandise t-shirt webshop, and to train a</p>
+<p>chatbot we need various ways to order: &quot;One Metallica t-shirt chatbot we need various ways to order: &quot;One Metallica t-shirt</p>
+<p>Output 1. I’d like to purchase a Metallica t-shirt in size small.</p>
+<ul>
+<li>2. Can I order a small-sized Metallica t-shirt? 2.</li>
+<li>3. I’d like to buy one Metallica t-shirt in small. 3.</li>
+<li>4. One Metallica shirt, size small, please. 4.</li>
+<li>5. I want one Metallica t-shirt in size small. 5.</li>
+<li>6. I’d like to place an order for one Metallica t-shirt in small. 6.</li>
+<li>7. Small Metallica t-shirt, one please. 7.</li>
+<li>8. I’m looking for one Metallica t-shirt in small. 8.</li>
+<li>9. Can you get me one Metallica t-shirt in small? 9.</li>
+<li>10. One Metallica small t-shirt, please. 10.</li>
+</ul>
+<p>Table 15. Use an LLM to generate prompts</p>
+<ul>
+<li>2. Evaluate all of the instruction candidates by scoring the candidates based on a chosen 2.</li>
+</ul>
+<p>metric, For example, you can use. BLEU (Bilingual Evaluation Understudy) or ROUGE</p>
+<p>(Recall-Oriented Understudy for Gisting Evaluation).</p>
+<ul>
+<li>3. Select the instruction candidate with the highest evaluation score. This candidate will be 3.</li>
+</ul>
+<p>the final prompt you can use in your software application or chatbot. You can also tweak</p>
+<p>the select prompt and evaluate again.</p>
+<p>February 2025 41 2025</p>
+<p>Code prompting</p>
+<p>Gemini focuses primarily on text-based prompts, which also includes writing prompts for Gemini</p>
+<p>returning code. Let’s go to the Vertex AI Studio and test these prompts to look at some AI Studio</p>
+<p>coding examples.</p>
+<p>Gemini can also be a developer and help you with writing code in any programming language Gemini</p>
+<p>of choice. As a developer this can help you speed up the process of writing code.</p>
+<p>Imagine a folder on your machine with hundreds of files that needs to be renamed.</p>
+<p>Renaming each file would take you a lot of time. You know a little Bash, and could write</p>
+<p>a script to automate this, but that may also take awhile. So let’s write a prompt. You can</p>
+<p>write the prompt in the public consumer chatbot Gemini, or if you are more concerned</p>
+<p>about confidentiality, you can write these prompts within your Google Cloud account and Studio</p>
+<p>open Vertex AI Studio. The advantage of Vertex AI Studio is that you can configure the</p>
+<p>temperature etc.</p>
+<p>February 2025 42 2025</p>`,
+      }
     },
     {
       title: 'Name 1_bash_rename_files_in_folder Name 1_bash_重命名',
+      title_i18n: {
+        'zh-CN': '重命名',
+        'en': 'Name 1_bash_rename_files_in_folder Name 1_bash_',
+      },
       level: 1,
       content: `<p>Prompt Engineering Prompt Engineering</p>
 <p>Name 1_bash_rename_files_in_folder Name 1_bash_重命名文件夹中的文件</p>
@@ -419,6 +919,122 @@ window.REPORT_CHUNK_prompt_engineering_v7_2 = {
 <p>message (“Folder does not exist.”) and exits the script with an exit code of 1. 消息（“文件夹不存在。”）并以退出码1退出脚本。</p>
 <p>Continues next page... Continues next page...</p>
 <p>February 2025 45 2025年2月 45</p>`
+,
+      content_i18n: {
+        'zh-CN': `<p>重命名文件夹中的文件</p>
+<p>编写一个提示，用于编写 Bash 代码以重命名文件夹中的文件。</p>
+<p>模型 gemini-pro</p>
+<p>温度 0.1 令牌限制 1024</p>
+<p>提示</p>
+<p>输出 \`\`\` bash</p>
+<p>if [ ! -d &quot;$folder_name&quot; ]; then if [ ! -d &quot;$folder_name&quot; ]; then</p>
+<p>for file in &quot;\${files[@]}&quot;; do for file in &quot;\${files[@]}&quot;; do</p>
+<p>\`\`\` \`\`\`</p>
+<p>这对我来说看起来是好代码——甚至还有文档！然而，由于大型语言模型无法推理且会重复训</p>
+<p>练数据，首先阅读和测试你的代码是至关重要的。</p>
+<p>我们都在等待的时刻，它真的有效吗？</p>
+<p>年2月 43</p>
+<p>我们先尝试一个测试文件夹，里面只有几个文件，需要将它们从 filename.txt 重命名为</p>
+<p>。</p>
+<ul>
+<li>复制表16中的输出（不包括\`\`\`bash\`\`\` 文本包装器），并粘贴到一个新文件中，命名为：</li>
+</ul>
+<p>。</p>
+<ul>
+<li>打开终端窗口，输入：. rename_files.sh。它会要求输入文件夹名称，例如 test，然后按回</li>
+</ul>
+<p>车。</p>
+<ul>
+<li>脚本似乎运行良好。你会看到消息：文件重命名成功。当你查看测试文件夹时，会注意</li>
+</ul>
+<p>到所有文件都已完美重命名为 draft_filename.txt。</p>
+<p>成功了！</p>
+<p>提示 解释</p>
+<p>作为开发者，当你在团队中工作时，你必须阅读别人的代码。Gemini 也可以帮助你做到这一</p>
+<p>点。让我们拿表16中的代码输出，去掉注释，然后让大型语言模型解释发生了什么，见表</p>
+<p>：</p>
+<p>年2月 44</p>
+<p>解释_代码_</p>
+<p>编写一个提示以解释 Bash 代码</p>
+<p>模型 gemini-pro</p>
+<p>温度 0.1 令牌限制 1024</p>
+<p>提示 Explain to me the below Bash code:</p>
+<p>\`\`\` \`\`\`</p>
+<p>if [ ! -d &quot;$folder_name&quot; ]; then if [ ! -d &quot;$folder_name&quot; ]; then</p>
+<p>for file in &quot;\${files[@]}&quot;; do for file in &quot;\${files[@]}&quot;; do</p>
+<p>\`\`\` \`\`\`</p>
+<p>输出 此 Bash 脚本执行以下任务：</p>
+<h3>用户输入**：</h3>
+<ul>
+<li>它使用 \`echo\` 和 \`read\` 命令提示用户输入文件夹名称</li>
+</ul>
+<p>。输入的文件夹名称存储在 \`folder_name\` 变量中。</p>
+<h3>文件夹存在性检查**：</h3>
+<ul>
+<li>它使用 \`[ ! ‑d 检查指定名称的文件夹是否存在。</li>
+</ul>
+<p>条件。如果文件夹不存在，则显示错误</p>
+<p>消息（“文件夹不存在。”）并以退出码1退出脚本。</p>
+<p>年2月 45</p>`,
+        'en': `<p>Name 1_bash_rename_files_in_folder Name 1_bash_</p>
+<p>Goal Write a prompt to write code in Bash to rename files in a folder. Goal</p>
+<p>Model gemini-pro</p>
+<p>Temperature 0.1 Token Limit 1024</p>
+<p>Prompt Write a code snippet in Bash, which asks for a folder name.</p>
+<p>Output \`\`\`bash</p>
+<p>echo &quot;Enter the folder name: &quot; echo &quot;Enter the folder name: &quot;</p>
+<p>if [ ! -d &quot;$folder_name&quot; ]; then if [ ! -d &quot;$folder_name&quot; ]; then</p>
+<p>for file in &quot;\${files[@]}&quot;; do for file in &quot;\${files[@]}&quot;; do</p>
+<p>\`\`\` \`\`\`</p>
+<p>That seems like good code to me - it’s even documented! However, since LLMs can’t reason,</p>
+<p>and repeat training data, it’s essential to read and test your code first.</p>
+<p>The moment we are all waiting for, does it really work?</p>
+<p>February 2025 43 2025</p>
+<p>Let’s try it first with a test folder with only a few files in it, which will need to be renamed from</p>
+<p>filename.txt to draft_filename.txt. draft_filename.txt</p>
+<ul>
+<li>1. Copy the output from Table 16 (without the \`\`\`bash \`\`\` text wrapper), and paste it in a new 1.</li>
+</ul>
+<p>file called: “rename_files.sh”. “rename_files.sh”</p>
+<ul>
+<li>2. Open a terminal window and type: . rename_files.sh. It will ask to enter a folder name, e.g. 2.</li>
+</ul>
+<p>test. and hit enter.</p>
+<ul>
+<li>3. The script seems to run fine. You will see the message: Files renamed successfully. 3.</li>
+</ul>
+<p>When you look into the test folder, notice that all the files were perfectly renamed to</p>
+<p>draft_filename.txt.</p>
+<p>It worked!</p>
+<p>Prompts for explaining code for code</p>
+<p>As a developer when you work in teams you have to read someone else’s code. Gemini can</p>
+<p>help you with this as well. Let’s take the code output from Table 16, remove the comments</p>
+<p>and ask the large language model to explain what’s happening, See Table 17: 17</p>
+<p>February 2025 44 2025</p>
+<p>Name 1_bash_explain_the_code Name 1_bash_</p>
+<p>Goal Write a prompt to explain Bash code Goal</p>
+<p>Model gemini-pro</p>
+<p>Temperature 0.1 Token Limit 1024</p>
+<p>Prompt Explain to me the below Bash code:</p>
+<p>\`\`\` \`\`\`</p>
+<p>echo &quot;Enter the folder name: &quot; echo &quot;Enter the folder name: &quot;</p>
+<p>if [ ! -d &quot;$folder_name&quot; ]; then if [ ! -d &quot;$folder_name&quot; ]; then</p>
+<p>for file in &quot;\${files[@]}&quot;; do for file in &quot;\${files[@]}&quot;; do</p>
+<p>\`\`\` \`\`\`</p>
+<p>Output This Bash script performs the following tasks:</p>
+<h3>1. **User Input**: 1. **</h3>
+<ul>
+<li>It prompts the user to enter a folder name using the \`echo\` and \`read\` ‑</li>
+</ul>
+<p>commands. The entered folder name is stored in the \`folder_name\` variable.</p>
+<h3>2. **Folder Existence Check**: 2. **</h3>
+<ul>
+<li>It checks if the folder with the specified name exists using the \`[ ! -d ‑</li>
+</ul>
+<p>“$folder_name” ]\` condition. If the folder does not exist, it displays an error “$folder_name” ]\`</p>
+<p>message (“Folder does not exist.”) and exits the script with an exit code of 1.</p>
+<p>February 2025 45 2025</p>`,
+      }
     }
   ]
 };
