@@ -17,6 +17,18 @@ let useStatic = false;
 let staticDataPromise = null;
 
 /**
+ * 切换到静态数据模式
+ * /api 不可用（如 GitHub Pages 纯静态环境）是设计内的预期行为，
+ * 仅在首次切换时输出一条 info 日志，避免每次调用都刷 error。
+ */
+function fallbackToStatic(error) {
+  if (!useStatic) {
+    console.info('[ObtStarAPI] /api 不可用，已切换为静态数据模式', error);
+  }
+  useStatic = true;
+}
+
+/**
  * 基础请求函数
  */
 async function apiRequest(endpoint, options = {}) {
@@ -45,7 +57,6 @@ async function apiRequest(endpoint, options = {}) {
 
     return data;
   } catch (error) {
-    console.error(`API 请求失败: ${endpoint}`, error);
     throw error;
   }
 }
@@ -258,7 +269,7 @@ async function getCategories() {
     try {
       return await apiRequest('/api/categories');
     } catch (e) {
-      useStatic = true;
+      fallbackToStatic(e);
     }
   }
   await loadStaticData();
@@ -289,7 +300,7 @@ async function getReports(params = {}) {
       const queryString = buildQueryString(params);
       return await apiRequest(`/api/reports${queryString}`);
     } catch (e) {
-      useStatic = true;
+      fallbackToStatic(e);
     }
   }
   await loadStaticData();
@@ -306,7 +317,7 @@ async function getReportById(reportId) {
     try {
       return await apiRequest(`/api/reports/${reportId}`);
     } catch (e) {
-      useStatic = true;
+      fallbackToStatic(e);
     }
   }
   await loadStaticData();
@@ -330,7 +341,7 @@ async function getReportContent(reportId, options = {}) {
       const queryString = buildQueryString(options);
       return await apiRequest(`/api/reports/${reportId}/sections${queryString}`);
     } catch (e) {
-      useStatic = true;
+      fallbackToStatic(e);
     }
   }
   const manifest = await (await fetch(`data/reports-content/${reportId}/manifest.json`)).json();
@@ -368,7 +379,7 @@ async function getReportManifest(reportId) {
     try {
       return await apiRequest(`/api/reports/${reportId}/manifest`);
     } catch (e) {
-      useStatic = true;
+      fallbackToStatic(e);
     }
   }
   const response = await fetch(`data/reports-content/${reportId}/manifest.json`);
@@ -389,7 +400,7 @@ async function getHotTags() {
     try {
       return await apiRequest('/api/tags');
     } catch (e) {
-      useStatic = true;
+      fallbackToStatic(e);
     }
   }
   await loadStaticData();
@@ -405,7 +416,7 @@ async function getSources() {
     try {
       return await apiRequest('/api/sources');
     } catch (e) {
-      useStatic = true;
+      fallbackToStatic(e);
     }
   }
   await loadStaticData();

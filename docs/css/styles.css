@@ -1,8 +1,7 @@
 /* ============================================================
    ObtStar Global Styles
-   Tailwind 基础 + 自定义设计系统
+   自定义设计系统（无第三方 CSS 框架，全部类名为自定义）
    ============================================================ */
-@import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;900&display=swap');
 
 /* ── 基础配色（浅色模式默认值）───────────────────────── */
