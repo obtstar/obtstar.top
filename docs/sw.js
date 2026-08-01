@@ -8,10 +8,9 @@
  * - 图片资源: Cache First, 最长30天
  */
 
-const CACHE_NAME = 'obtstar-v3';
-const STATIC_CACHE = 'obtstar-static-v2';
-const API_CACHE = 'obtstar-api-v2';
-const IMAGE_CACHE = 'obtstar-images-v2';
+const STATIC_CACHE = 'obtstar-static-v3';
+const API_CACHE = 'obtstar-api-v3';
+const IMAGE_CACHE = 'obtstar-images-v3';
 
 // 预缓存的核心资源
 const PRECACHE_ASSETS = [
@@ -20,13 +19,15 @@ const PRECACHE_ASSETS = [
   '/404.html',
   '/reports.html',
   '/report-detail.html',
+  '/reader.html',
   '/about.html',
   '/css/styles.css',
   '/css/components.css',
   '/js/main.js',
   '/js/theme-manager.js',
   '/js/api-client.js',
-  '/js/bookmarks.js'
+  '/js/bookmarks.js',
+  '/data/reports.js'
 ];
 
 // 安装事件 - 预缓存核心资源
@@ -254,54 +255,6 @@ self.addEventListener('fetch', (event) => {
         fetch(request)
           .catch(() => caches.match(request))
       );
-  }
-});
-
-// SW 激活时清理旧版本缓存
-self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(keys.filter(k => k.includes('obtstar-') && !k.includes('v2')).map(k => caches.delete(k)))
-    )
-  );
-});
-
-// 后台同步事件（用于离线操作）
-self.addEventListener('sync', (event) => {
-  if (event.tag === 'sync-bookmarks') {
-    event.waitUntil(syncBookmarks());
-  }
-});
-
-// 推送通知事件
-self.addEventListener('push', (event) => {
-  if (!event.data) return;
-  
-  const data = event.data.json();
-  const options = {
-    body: data.body,
-    icon: '/icon-192x192.png',
-    badge: '/badge-72x72.png',
-    data: data.url,
-    actions: [
-      { action: 'open', title: '查看' },
-      { action: 'close', title: '关闭' }
-    ]
-  };
-  
-  event.waitUntil(
-    self.registration.showNotification(data.title, options)
-  );
-});
-
-// 通知点击事件
-self.addEventListener('notificationclick', (event) => {
-  event.notification.close();
-  
-  if (event.action === 'open' || !event.action) {
-    event.waitUntil(
-      clients.openWindow(event.notification.data || '/')
-    );
   }
 });
 
