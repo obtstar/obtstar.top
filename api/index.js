@@ -345,7 +345,7 @@ function sendResponse(res, statusCode, data, options = {}) {
  */
 function sendError(res, statusCode, title, detail, instance, extensions = {}) {
   const errorResponse = {
-    type: `https://api.obtstar.com/errors/${statusCode}`,
+    type: `https://api.obtstar.top/errors/${statusCode}`,
     title,
     status: statusCode,
     detail,
@@ -367,7 +367,7 @@ function sendError(res, statusCode, title, detail, instance, extensions = {}) {
  */
 function sendValidationError(res, errors) {
   const errorResponse = {
-    type: 'https://api.obtstar.com/errors/validation-failed',
+    type: 'https://api.obtstar.top/errors/validation-failed',
     title: 'Validation Failed',
     status: HTTP_STATUS.UNPROCESSABLE_ENTITY,
     errors: errors.map(err => ({

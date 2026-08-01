@@ -1,5 +1,5 @@
 /**
- * obtstar.com 报告数据中心
+ * obtstar.top 报告数据中心
  * =====================================================
  * 【如何扩展】
  *
@@ -301,7 +301,7 @@ const SITE_CONFIG = {
   name: 'ObtStar',
   tagline: '探索AI前沿 · 洞察数字未来',
   description: '汇聚AI时代最具洞察力的研究报告，覆盖信息质量、数字化转型、知识架构、未来推演等核心议题。',
-  email: 'hello@obtstar.com',
+  email: 'hello@obtstar.top',
   github: 'https://github.com/obtstar',
   twitter: 'https://x.com/obtstar',
   stats: {

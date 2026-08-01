@@ -23,7 +23,7 @@ def read_pdf(pdf_path):
         return f"读取PDF出错: {str(e)}"
 
 if __name__ == "__main__":
-    pdf_dir = "c:/Users/ryuub/WorkBuddy/Claw/obtstar.com"
+    pdf_dir = "c:/Users/ryuub/WorkBuddy/Claw/obtstar.top"
     
     # 列出所有PDF文件
     pdf_files = [f for f in os.listdir(pdf_dir) if f.endswith('.pdf')]

@@ -376,7 +376,7 @@ def process_report(report_id, pages, output_dir):
 
 if __name__ == '__main__':
     print('📂 读取 PDF 内容...')
-    with open('C:/Users/ryuub/WorkBuddy/Claw/obtstar.com/_all_pdfs_content.txt', 'r', encoding='utf-8') as f:
+    with open('C:/Users/ryuub/WorkBuddy/Claw/obtstar.top/_all_pdfs_content.txt', 'r', encoding='utf-8') as f:
         all_content = f.read()
     
     print('🔍 解析各 PDF 内容...')

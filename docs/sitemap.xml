@@ -7,7 +7,7 @@
   
   <!-- 首页 -->
   <url>
-    <loc>https://obtstar.com/</loc>
+    <loc>https://obtstar.top/</loc>
     <lastmod>2026-04-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -15,7 +15,7 @@
   
   <!-- 报告列表页 -->
   <url>
-    <loc>https://obtstar.com/reports.html</loc>
+    <loc>https://obtstar.top/reports.html</loc>
     <lastmod>2026-04-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
@@ -23,7 +23,7 @@
   
   <!-- 关于页面 -->
   <url>
-    <loc>https://obtstar.com/about.html</loc>
+    <loc>https://obtstar.top/about.html</loc>
     <lastmod>2026-04-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -31,42 +31,42 @@
   
   <!-- 报告详情页 -->
   <url>
-    <loc>https://obtstar.com/report-detail.html?id=ai-fact-check-2026</loc>
+    <loc>https://obtstar.top/report-detail.html?id=ai-fact-check-2026</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://obtstar.com/report-detail.html?id=digital-transform-2024-2030</loc>
+    <loc>https://obtstar.top/report-detail.html?id=digital-transform-2024-2030</loc>
     <lastmod>2026-03-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://obtstar.com/report-detail.html?id=knowledge-memory-arch</loc>
+    <loc>https://obtstar.top/report-detail.html?id=knowledge-memory-arch</loc>
     <lastmod>2026-03-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://obtstar.com/report-detail.html?id=data-stream-micro-light</loc>
+    <loc>https://obtstar.top/report-detail.html?id=data-stream-micro-light</loc>
     <lastmod>2026-02-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://obtstar.com/report-detail.html?id=ai-coding-tools-growth</loc>
+    <loc>https://obtstar.top/report-detail.html?id=ai-coding-tools-growth</loc>
     <lastmod>2026-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://obtstar.com/report-detail.html?id=prompt-engineering-v7</loc>
+    <loc>https://obtstar.top/report-detail.html?id=prompt-engineering-v7</loc>
     <lastmod>2025-12-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

@@ -66,7 +66,7 @@ pdf_mapping = {
     'ai-fact-check-2026': '小艺深度研究报告-AI时代的信息质量保障：2026年系统性事实核查与风险管理体系研究@xiaoyi.huawei.com_20260331082108.pdf',
 }
 
-pdf_dir = "c:/Users/ryuub/WorkBuddy/Claw/obtstar.com"
+pdf_dir = "c:/Users/ryuub/WorkBuddy/Claw/obtstar.top"
 
 output = []
 output.append("const REPORT_CONTENTS = {")

@@ -61,7 +61,7 @@ def text_to_html(text, skip_header=None):
     
     return '\n'.join(html_lines)
 
-pdf_dir = "c:/Users/ryuub/WorkBuddy/Claw/obtstar.com"
+pdf_dir = "c:/Users/ryuub/WorkBuddy/Claw/obtstar.top"
 
 # 读取每个PDF文件，识别内容
 pdf_files = [

@@ -1,5 +1,5 @@
 # ObtStar 网站爬虫规则
-# https://obtstar.com/robots.txt
+# https://obtstar.top/robots.txt
 
 User-agent: *
 Allow: /
@@ -10,7 +10,7 @@ Disallow: /data/
 Disallow: /js/api-client.js
 
 # 网站地图
-Sitemap: https://obtstar.com/sitemap.xml
+Sitemap: https://obtstar.top/sitemap.xml
 
 # 爬虫抓取频率
 Crawl-delay: 1

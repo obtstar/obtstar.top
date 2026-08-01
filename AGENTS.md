@@ -4,7 +4,7 @@
 
 ## 项目概述
 
-ObtStar（obtstar.com / obtstar.top）是一个**中文（zh-CN）研究报告展示与阅读网站**，主题为「探索 AI 前沿 · 洞察数字未来」。站点发布 AI 相关的深度研究报告（事实核查、数字化转型、提示工程等），提供报告列表、详情页和在线分页阅读器。
+ObtStar（obtstar.top）是一个**中文（zh-CN）研究报告展示与阅读网站**，主题为「探索 AI 前沿 · 洞察数字未来」。站点发布 AI 相关的深度研究报告（事实核查、数字化转型、提示工程等），提供报告列表、详情页和在线分页阅读器。
 
 项目**没有构建系统、没有包管理器配置**（无 `package.json`、`pyproject.toml` 等），全部由原生技术组成：
 
@@ -69,7 +69,7 @@ chunk 文件格式约定：
 node server.js            # 监听 http://localhost:3001（PORT 环境变量可改）
 
 # 验证 API（仅本地有，GitHub Pages 上不存在 /api/*）
-curl http://localhost:3001/api/health
+curl http://localhost:3001/api/            # 健康检查在 API 根路径
 curl http://localhost:3001/api/reports
 curl http://localhost:3001/api/reports/<id>/sections?chunk=0
 
@@ -86,7 +86,7 @@ python3 tools/validate_chunks.py   # 校验
 ## API 约定（api/index.js，仅本地开发）
 
 - 仅允许 `GET / HEAD / OPTIONS`，其他方法返回 405。
-- 路由：`/api/health`（根路径）、`/api/categories`、`/api/reports`（支持 `category/search/tag/sort/page/limit` 查询参数与 RFC 5988 `Link` 分页头）、`/api/reports/:id`、`/api/reports/:id/sections[?chunk=N]`、`/api/reports/:id/manifest`、`/api/tags`、`/api/sources`。
+- 路由：`/api/`（健康检查）、`/api/categories`、`/api/reports`（支持 `category/search/tag/sort/page/limit` 查询参数与 RFC 5988 `Link` 分页头）、`/api/reports/:id`、`/api/reports/:id/sections[?chunk=N]`、`/api/reports/:id/manifest`、`/api/tags`、`/api/sources`。
 - 遵循 RESTful 规范：RFC 7807 `application/problem+json` 错误格式、ETag/304 条件请求、HATEOAS `links` 字段、CORS `*`。
 - 报告 id 校验：`/^[a-z0-9-]+$/` 且长度 ≤ 64。
 - 数据有进程内缓存（categories/reports/manifests/chunks），**修改数据文件后需重启服务器**才能生效。
