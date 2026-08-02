@@ -8,9 +8,9 @@
  * - 图片资源: Cache First, 最长30天
  */
 
-const STATIC_CACHE = 'obtstar-static-v5';
-const API_CACHE = 'obtstar-api-v5';
-const IMAGE_CACHE = 'obtstar-images-v5';
+const STATIC_CACHE = 'obtstar-static-v6';
+const API_CACHE = 'obtstar-api-v6';
+const IMAGE_CACHE = 'obtstar-images-v6';
 
 // 预缓存的核心资源
 const PRECACHE_ASSETS = [
@@ -23,7 +23,6 @@ const PRECACHE_ASSETS = [
   '/about.html',
   '/css/styles.css',
   '/css/components.css',
-  '/js/main.js',
   '/js/theme-manager.js',
   '/js/api-client.js',
   '/js/bookmarks.js',
