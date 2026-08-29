@@ -3,303 +3,69 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ObtStar · 探索AI前沿 · 洞察数字未来</title>
+  <title>ObtStar · control — AI 驱动执行的个人 Agent 平台</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <meta name="description" content="汇聚AI时代最具洞察力的研究报告，覆盖信息质量、数字化转型、知识架构、未来推演等核心议题。" />
-  
-  <!-- 防止FOUC：主题检测内联脚本 -->
-  <script src="js/index-head.js"></script>
-
-  
-  <!-- Canonical URL -->
+  <meta name="description" content="control 平台：单人 AI Agent 开发平台——AI 驱动执行、用户逐步审批、Git 唯一可信源、数据内网 AI 外接受控。" />
   <link rel="canonical" href="https://obtstar.top/index.html" />
-  
-  <!-- 性能优化：资源预连接 -->
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  
-  <!-- 性能优化：DNS 预取 -->
-  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
-  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-  
-  <!-- 性能优化：资源预加载 -->
-  <link rel="preload" href="css/styles.css" as="style" />
-  <link rel="preload" href="css/components.css" as="style" />
-  <link rel="preload" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" as="style" />
-  
-  <!-- SEO：Open Graph -->
-  <meta property="og:title" content="ObtStar · 探索AI前沿 · 洞察数字未来" />
-  <meta property="og:description" content="汇聚AI时代最具洞察力的研究报告，覆盖信息质量、数字化转型、知识架构、未来推演等核心议题。" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://obtstar.top/index.html" />
-  <meta property="og:locale" content="zh_CN" />
-  
-  <!-- SEO：Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="ObtStar · 探索AI前沿 · 洞察数字未来" />
-  <meta name="twitter:description" content="汇聚AI时代最具洞察力的研究报告。" />
-  
-  <!-- SEO：JSON-LD 结构化数据 -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "ObtStar",
-    "description": "AI时代研究报告聚合平台",
-    "url": "https://obtstar.top",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://obtstar.top/reports.html?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
-  }
-  </script>
-  
   <link rel="stylesheet" href="css/styles.css" />
-  <link rel="stylesheet" href="css/components.css" />
-  <!-- AOS 滚动动画 -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
-  <!-- Font Awesome 图标 -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" />
-  
-  <link rel="stylesheet" href="css/index.css" />
 </head>
 <body>
-  <!-- 导航栏 -->
-  <nav class="navbar" id="navbar">
-    <div class="nav-container">
-      <a href="index.html" class="logo">Obt<span>★</span>Star</a>
-      <div class="nav-links" id="navLinks">
-        <a href="index.html" class="active">首页</a>
-        <a href="reports.html">研究报告</a>
-        <a href="about.html">关于</a>
-      </div>
-      <div style="display:flex;align-items:center;gap:0.75rem">
-        <button class="theme-toggle" id="themeToggle" title="切换深色模式" aria-label="切换深色模式">
-          <i class="fas fa-sun"></i>
-          <i class="fas fa-moon"></i>
-        </button>
-        <button class="nav-toggle" onclick="toggleNav()"><i class="fa fa-bars"></i></button>
-      </div>
-    </div>
-    <div class="reading-progress" id="readingProgress"></div>
-  </nav>
-
-  <!-- Hero 区域 -->
-  <section class="hero">
-    <canvas id="particle-canvas" class="particle-canvas"></canvas>
-    <div class="hero-content">
-      <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:3rem;flex-wrap:wrap">
-        <div style="flex:1;min-width:300px;max-width:600px" data-aos="fade-right">
-          <span class="section-label">Research Hub</span>
-          <h1 class="hero-title" style="margin-top:0.75rem;margin-bottom:1rem">
-            探索 <span class="text-gradient">AI 前沿</span><br>洞察数字未来
-          </h1>
-          <p class="hero-subtitle" style="margin-bottom:2rem">
-            汇聚AI时代最具洞察力的研究报告，覆盖信息质量、数字化转型、知识架构、未来推演等核心议题。
-          </p>
-          <div style="display:flex;gap:1rem;flex-wrap:wrap">
-            <a href="reports.html" class="btn btn-primary btn-lg">
-              <i class="fa fa-book-open"></i> 浏览报告库
-            </a>
-            <a href="#featured" class="btn btn-ghost btn-lg">
-              精选推荐 <i class="fa fa-arrow-down"></i>
-            </a>
-          </div>
-          <div style="margin-top:2.5rem;display:flex;gap:2rem;flex-wrap:wrap">
-            <div>
-              <div style="font-size:1.75rem;font-weight:800;color:var(--text-title)" id="statReports">6</div>
-              <div style="font-size:0.875rem;color:var(--text-muted)">深度报告</div>
-            </div>
-            <div>
-              <div style="font-size:1.75rem;font-weight:800;color:var(--text-title)" id="statPages">238</div>
-              <div style="font-size:0.875rem;color:var(--text-muted)">研究页数</div>
-            </div>
-            <div>
-              <div style="font-size:1.75rem;font-weight:800;color:var(--text-title)" id="statCategories">6</div>
-              <div style="font-size:0.875rem;color:var(--text-muted)">核心领域</div>
-            </div>
-          </div>
-        </div>
-        <div class="hero-visual" data-aos="fade-left">
-          <div class="hero-orb orb-1"></div>
-          <div class="hero-orb orb-2"></div>
-          <div class="hero-orb orb-3"></div>
-          <div class="hero-dashboard">
-            <div class="hero-dashboard-header">
-              <div class="dashboard-dot" style="background:#EF4444"></div>
-              <div class="dashboard-dot" style="background:#F59E0B"></div>
-              <div class="dashboard-dot" style="background:#10B981"></div>
-              <span style="margin-left:auto;font-size:0.75rem;color:#94A3B8">最新报告</span>
-            </div>
-            <div id="heroMiniCards">
-              <!-- 由 JS 动态渲染 -->
-              <div class="loading-skeleton" style="height:60px;margin-bottom:0.75rem"></div>
-              <div class="loading-skeleton" style="height:60px;margin-bottom:0.75rem"></div>
-              <div class="loading-skeleton" style="height:60px"></div>
-            </div>
-          </div>
-        </div>
+  <header>
+    <nav>
+      <a class="brand" href="index.html">ObtStar · control</a>
+      <a href="index.html" class="active">介绍</a>
+      <a href="architecture.html">架构</a>
+      <a href="quickstart.html">快速开始</a>
+      <a href="status.html">平台状态</a>
+    </nav>
+  </header>
+  <main>
+    <div class="hero">
+      <h1>control</h1>
+      <p style="color:var(--text2);font-size:13px;letter-spacing:2px;margin-bottom:8px">OBTSTAR 旗下 AI AGENT 平台</p>
+      <p class="subtitle">AI 驱动执行的个人 Agent 平台 · 用户逐步审批 · Git 唯一可信源</p>
+      <div>
+        <span class="tag green">AI 驱动执行</span>
+        <span class="tag blue">每阶段审批闸</span>
+        <span class="tag purple">任务即文档</span>
+        <span class="tag orange">操作全留痕</span>
       </div>
     </div>
-    <div style="position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:1;text-align:center">
-      <div style="font-size:0.8rem;color:#94A3B8;margin-bottom:0.5rem;letter-spacing:0.08em">SCROLL</div>
-      <div style="width:1px;height:36px;background:linear-gradient(to bottom, #94A3B8, transparent);margin:0 auto;animation:scroll-line 1.8s ease-in-out infinite"></div>
-    </div>
-    
-  </section>
 
-  <!-- 主题分类云 -->
-  <section class="section-sm" style="background:var(--bg-white);border-top:1px solid var(--border)">
-    <div class="container">
-      <div style="text-align:center;margin-bottom:2rem" data-aos="fade-up">
-        <span class="section-label">研究领域</span>
-        <h2 class="section-title" style="margin-top:0.5rem">覆盖六大核心主题</h2>
-      </div>
-      <div class="category-cloud" id="categoryCloud" data-aos="fade-up" data-aos-delay="100">
-        <!-- 由 JS 动态渲染 -->
-      </div>
-    </div>
-  </section>
+    <h2>平台定位</h2>
+    <p>
+      control 是面向内网部署的<strong>单人 AI Agent 平台</strong>：Agent 在会话内执行任务流水线
+      （requirements → design → coding → testing → merge → deliver），每一阶段产物经
+      <strong>审批闸</strong>由人批准后才进入下一阶段——AI 干活，人审批，最终合并权始终在人。
+    </p>
 
-  <!-- 精选报告 -->
-  <section class="section" id="featured">
-    <div class="container">
-      <div class="section-header" data-aos="fade-up">
-        <span class="section-label">精选报告</span>
-        <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-top:0.5rem">
-          <div>
-            <h2 class="section-title">编辑精选</h2>
-            <p class="section-desc">精心筛选的前沿AI研究报告</p>
-          </div>
-          <a href="reports.html" class="btn btn-outline">查看全部 <i class="fa fa-arrow-right"></i></a>
-        </div>
+    <h2>核心原则</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>AI 驱动执行，用户逐步审批</h3>
+        <p>流水线每阶段一道审批闸，用户保留最终合并权；驳回附批注，AI 带批注返工。</p>
       </div>
-      <div class="featured-grid" id="featuredGrid">
-        <!-- 由 JS 动态渲染 -->
+      <div class="card">
+        <h3>权柄分级，有据可依</h3>
+        <p>文档按 L1 需求 → L2 概要 → L3 详细 → L4 代码分级；AI 顺行产出，禁止逆行修改上级文档；产出引用 KB 依据。</p>
+      </div>
+      <div class="card">
+        <h3>Git 为唯一可信源</h3>
+        <p>代码、文档、编排配置、注册表、任务、KB 全进 Git；任务即文档（task.md 权威）。</p>
+      </div>
+      <div class="card">
+        <h3>数据内网，AI 外接受控</h3>
+        <p>模型请求经 DSH 统一出口；代码/数据不出本机；密钥不落盘，操作全留痕（work_log hash 链）。</p>
       </div>
     </div>
-  </section>
 
-  <!-- 全部报告网格 -->
-  <section class="section" style="background:var(--bg-subtle)">
-    <div class="container">
-      <div class="section-header" data-aos="fade-up">
-        <span class="section-label">报告库</span>
-        <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-top:0.5rem">
-          <div>
-            <h2 class="section-title">所有研究报告</h2>
-            <p class="section-desc">共 <strong id="reportCount">-</strong> 份深度研究报告</p>
-          </div>
-          <a href="reports.html" class="btn btn-outline">进入报告库 <i class="fa fa-arrow-right"></i></a>
-        </div>
-      </div>
-      <div class="grid-3" id="allReportsGrid">
-        <!-- 由 JS 动态渲染 -->
-      </div>
-    </div>
-  </section>
-
-  <!-- 统计数据 -->
-  <section class="section" style="background:var(--bg-white)">
-    <div class="container">
-      <div class="grid-4" id="statsGrid" style="gap:1.5rem">
-        <div class="stat-card" data-aos="fade-up" data-aos-delay="0">
-          <span class="stat-num" id="counterReports">-</span>
-          <div class="stat-label">深度研究报告</div>
-        </div>
-        <div class="stat-card" data-aos="fade-up" data-aos-delay="80">
-          <span class="stat-num" id="counterPages">-</span>
-          <div class="stat-label">总研究页数</div>
-        </div>
-        <div class="stat-card" data-aos="fade-up" data-aos-delay="160">
-          <span class="stat-num" id="counterCategories">-</span>
-          <div class="stat-label">核心研究领域</div>
-        </div>
-        <div class="stat-card" data-aos="fade-up" data-aos-delay="240">
-          <span class="stat-num">2026</span>
-          <div class="stat-label">持续更新</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="section cta-section">
-    <div class="container cta-content" style="text-align:center" data-aos="fade-up">
-      <div style="font-size:3rem;margin-bottom:1rem">🚀</div>
-      <h2 class="cta-title">
-        开始探索 AI 前沿研究
-      </h2>
-      <p class="cta-desc">
-        深入阅读每一篇报告，在AI时代掌握信息质量、架构设计与未来趋势的第一手洞察。
-      </p>
-      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
-        <a href="reports.html" class="btn btn-primary btn-lg">
-          <i class="fa fa-book-open"></i> 立即阅读
-        </a>
-        <a href="about.html" class="btn btn-cta-secondary">
-          了解更多
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;flex-wrap:wrap">
-        <div>
-          <div class="footer-logo">Obt★Star</div>
-          <p style="font-size:0.875rem;line-height:1.8;max-width:280px;margin-bottom:1.5rem">
-            汇聚AI时代最具洞察力的研究报告，帮助您在信息洪流中找到清晰方向。
-          </p>
-          <div class="social-links">
-            <a href="#" class="social-link" title="GitHub"><i class="fab fa-github"></i></a>
-            <a href="#" class="social-link" title="Twitter/X"><i class="fab fa-twitter"></i></a>
-            <a href="mailto:hello@obtstar.top" class="social-link" title="Email"><i class="fas fa-envelope"></i></a>
-          </div>
-        </div>
-        <div>
-          <h5>研究领域</h5>
-          <ul class="footer-links" id="footerCategories">
-            <!-- 由 JS 动态渲染 -->
-          </ul>
-        </div>
-        <div>
-          <h5>精选报告</h5>
-          <ul class="footer-links" id="footerReports">
-            <!-- 由 JS 动态渲染 -->
-          </ul>
-        </div>
-        <div>
-          <h5>站点导航</h5>
-          <ul class="footer-links">
-            <li><a href="index.html">首页</a></li>
-            <li><a href="reports.html">研究报告</a></li>
-            <li><a href="about.html">关于我们</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <div>© 2026 ObtStar · All rights reserved</div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- 脚本 -->
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script src="js/particles.js"></script>
-  <script src="js/api-client.js?v=2026080101"></script>
-  <script src="js/theme-manager.js"></script>
-  <script src="js/bookmarks.js"></script>
-
-  
-  
-  <!-- Service Worker 注册 -->
-  
-  <script src="js/index.js"></script>
+    <h2>C1 执行模型</h2>
+    <p>
+      任务阶段由 <strong>DSH 会话</strong>执行（模型接入 DSH），阶段产物落任务目录后经
+      <code>advance</code> 回传进入审批闸；人工在 <strong>control-web 工作台</strong>审批。
+      模型出口收敛为 DSH 单一通道（LiteLLM 网关已砍除）。
+    </p>
+  </main>
+  <footer>ObtStar · control — AI 驱动执行的个人 Agent 平台 · obtstar.top</footer>
 </body>
 </html>

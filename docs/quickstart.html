@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>快速开始 · control</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="description" content="control 平台快速开始：环境初始化、构建运行、常用命令。" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header>
+    <nav>
+      <a class="brand" href="index.html">control</a>
+      <a href="index.html">介绍</a>
+      <a href="architecture.html">架构</a>
+      <a href="quickstart.html" class="active">快速开始</a>
+      <a href="status.html">平台状态</a>
+    </nav>
+  </header>
+  <main>
+    <h1>快速开始</h1>
+    <p class="subtitle">环境初始化（两阶段）→ 构建 → 运行 → 常用命令</p>
+
+    <h2>环境初始化（两阶段）</h2>
+    <h3>阶段一（root）：用户、目录、克隆 control-center</h3>
+    <pre><code>curl -fsSL https://gh.dpik.top/https://raw.githubusercontent.com/obtstar/control-center/dev/scripts/init-env.sh -o /tmp/init-env.sh
+sudo bash /tmp/init-env.sh --</code></pre>
+    <h3>阶段二（dev 身份）：工具链、同步、PieKBS</h3>
+    <pre><code>bash ~/control-center/scripts/setup-env.sh [--executor|--check|--skip-*]</code></pre>
+
+    <h2>构建</h2>
+    <pre><code># control-api（Go）
+cd ~/control-api && go build ./...
+
+# control-piekbs（必须带 fts5 tag）
+cd ~/control-piekbs && go build -tags fts5 ./...
+
+# control-web（React）
+cd ~/control-web && pnpm build</code></pre>
+
+    <h2>运行（systemd 用户服务）</h2>
+    <table>
+      <tr><th>服务</th><th>端口</th><th>说明</th></tr>
+      <tr><td>piekbs-mcp</td><td>8766</td><td>KB FTS 检索 / MCP</td></tr>
+      <tr><td>control-api</td><td>8765</td><td>任务状态机 / 审批 / 审计 / SSE</td></tr>
+      <tr><td>dsh-web</td><td>3080</td><td>DSH AI 会话（模型出口）</td></tr>
+      <tr><td>control-web</td><td>4173</td><td>审批工作台（与 dsh 同步启动）</td></tr>
+    </table>
+
+    <h2>常用命令</h2>
+    <pre><code># 测试
+cd ~/control-api && go test ./...
+cd ~/control-piekbs && go test -tags fts5 ./...
+cd ~/control-web && pnpm test
+
+# 对账（文档声明 ↔ 代码事实）
+~/control-api/control-api reconcile
+
+# 用户管理
+~/control-api/control-api user add &lt;username&gt; &lt;role&gt;</code></pre>
+
+    <h2>环境检查</h2>
+    <pre><code>bash ~/control-center/scripts/setup-env.sh --check</code></pre>
+  </main>
+  <footer>ObtStar · control — AI 驱动执行的个人 Agent 平台 · obtstar.top</footer>
+</body>
+</html>
