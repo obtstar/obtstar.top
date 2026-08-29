@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>平台状态 · control</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="description" content="control 平台状态快照：任务、问题台账、服务、里程碑。" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header>
+    <nav>
+      <a class="brand" href="index.html">control</a>
+      <a href="index.html">介绍</a>
+      <a href="architecture.html">架构</a>
+      <a href="quickstart.html">快速开始</a>
+      <a href="status.html" class="active">平台状态</a>
+    </nav>
+  </header>
+  <main>
+    <h1>平台状态</h1>
+    <p class="subtitle">静态快照（2026-08-29）</p>
+
+    <h2>总览</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>17</h3>
+        <p>任务全部交付（TASK-001~010 + 000011~000017）</p>
+      </div>
+      <div class="card">
+        <h3>55</h3>
+        <p>问题台账 FINDING 条（52 fixed + 2 wontfix + 1 已裁决关闭）——<strong>0 open</strong></p>
+      </div>
+      <div class="card">
+        <h3>4</h3>
+        <p>常驻服务（piekbs / control-api / dsh / control-web）</p>
+      </div>
+      <div class="card">
+        <h3>5/5</h3>
+        <p>reconcile 对账全 PASS（后端/前端/数据库/注册表/KB 镜像）</p>
+      </div>
+    </div>
+
+    <h2>里程碑</h2>
+    <table>
+      <tr><th>时间</th><th>里程碑</th></tr>
+      <tr><td>2026-08</td><td>平台骨架：六仓就绪、任务流水线 + 审批闸通电</td></tr>
+      <tr><td>2026-08</td><td>C1 执行层迁移：模型接入 DSH，阶段由 DSH 会话执行 + advance 回传</td></tr>
+      <tr><td>2026-08</td><td>工作台双线定位：control-web 审批唯一入口，插件 AI 执行面（只读投影）</td></tr>
+      <tr><td>2026-08</td><td>SSE 实时通知 + AI 助手面板（iframe 嵌入 DSH）</td></tr>
+      <tr><td>2026-08</td><td>LiteLLM 网关砍除：模型出口收敛 DSH 单一通道（FINDING-017 关闭）</td></tr>
+      <tr><td>2026-08</td><td>自动归档 + 分支自动清理（task-archive / branch-cleanup timer）</td></tr>
+      <tr><td>2026-08</td><td>开发流程调整：平台仓 dev 直开，worktree 移交业务仓</td></tr>
+    </table>
+
+    <h2>关键能力</h2>
+    <ul>
+      <li><strong>任务编排</strong>：requirements → design → coding → testing → merge → deliver，每阶段审批闸</li>
+      <li><strong>审计</strong>：work_log hash 链防篡改（verify-log 校验）</li>
+      <li><strong>契约对账</strong>：openapi.yaml 单一可信源 + 契约测试双向对账</li>
+      <li><strong>实时通知</strong>：SSE 事件流（任务状态变更自动推送看板/审批页）</li>
+      <li><strong>AI 协作</strong>：control-web AI 助手（DSH 会话）+ 行内 AI 协助入口</li>
+      <li><strong>知识蒸馏</strong>：wiki-distill 技能（raw → wiki 蒸馏页，FTS 检索）</li>
+    </ul>
+  </main>
+  <footer>control · obtstar.top — AI 驱动执行的个人 Agent 平台</footer>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>架构 · control</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="description" content="control 平台架构：六仓布局、技术栈、流水线、数据分层。" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header>
+    <nav>
+      <a class="brand" href="index.html">control</a>
+      <a href="index.html">介绍</a>
+      <a href="architecture.html" class="active">架构</a>
+      <a href="quickstart.html">快速开始</a>
+      <a href="status.html">平台状态</a>
+    </nav>
+  </header>
+  <main>
+    <h1>平台架构</h1>
+    <p class="subtitle">多仓（multi-repo）本地开发环境：平台六仓 + 业务项目仓按需登记</p>
+
+    <h2>平台六仓</h2>
+    <table>
+      <tr><th>仓库</th><th>角色</th><th>说明</th></tr>
+      <tr><td>control-center</td><td>引导仓</td><td>编排配置 orchestration/、注册表 registry/、环境脚本 scripts/</td></tr>
+      <tr><td>control-api</td><td>编排后端</td><td>Go HTTP 服务：任务状态机、审批、审计、契约对账、SSE 事件流</td></tr>
+      <tr><td>control-web</td><td>工作台前端</td><td>React 审批工作台：看板/审批/审计/KB/API 文档/AI 助手</td></tr>
+      <tr><td>control-piekbs</td><td>知识引擎</td><td>Go 编写：FTS 搜索 + MCP 服务 + 文档蒸馏（wiki-distill 技能）</td></tr>
+      <tr><td>control-db</td><td>数据库 DDL</td><td>SQLite 运行时库 DDL（当前占位）</td></tr>
+      <tr><td>control-wiki</td><td>平台级 KB</td><td>raw/ 原始文档、wiki/ 蒸馏产物、schema/ 规则</td></tr>
+    </table>
+
+    <h2>运行时拓扑</h2>
+    <pre>
+            人工操作        control-web 审批工作台（4173，React + AI 助手 iframe）
+            ──────────────→┌─────────────────────────────┐
+                           │ 看板 / 审批 / 审计 / KB      │
+                           └──────────────┬──────────────┘
+                                          │ /api（REST + SSE）
+            ┌──────────┐   ┌──────────────▼──────────────┐
+            │ DSH GUI  │   │ control-api（8765，Go）       │
+            │ (3080)   │←──┤ 状态机/审批/审计/契约/SSE     │
+            │ AI 会话  │   └──────┬──────────┬────────────┘
+            │ 插件工具 │          │ SQLite   │ PieKBS(8766)
+            └──────────┘      control.db   FTS/KB + Git worktree
+    </pre>
+
+    <h2>技术栈</h2>
+    <div class="grid">
+      <div class="card"><h3>后端</h3><p>Go 1.25+ · stdlib net/http mux（无 Web 框架）· SQLite（WAL）</p></div>
+      <div class="card"><h3>前端</h3><p>React 18 · PrimeReact · Vite · pnpm（审批工作台）</p></div>
+      <div class="card"><h3>AI 执行</h3><p>DSH 会话（dsh-llm 统一出口）· control 插件工具桥（14 个 control_* 工具）</p></div>
+      <div class="card"><h3>知识</h3><p>PieKBS FTS 检索 · wiki-distill 蒸馏 · KB grounding 有据校验</p></div>
+    </div>
+
+    <h2>流水线（每阶段一审批闸）</h2>
+    <pre>requirements → design → coding → testing → merge → deliver
+      ↑ 审批闸    ↑ 审批闸    ↑ 审批闸   ↑ 审批闸    ↑ 团队 MR 终审
+      （驳回附批注重做）      （测试驳回打回 coding）</pre>
+    <ul>
+      <li>merge 阶段终审为团队员工在 Git 平台合并（平台无合并按钮）；webhook 回传自动推进</li>
+      <li>任务级熔断：连败 3 次自动暂停 + 通知</li>
+      <li>开发流程（2026-08 起）：平台仓 dev 直开；业务仓 worktree + feature 分支 + MR</li>
+    </ul>
+
+    <h2>数据分层</h2>
+    <table>
+      <tr><th>层</th><th>内容</th><th>存放</th></tr>
+      <tr><td>权威（低频）</td><td>代码、文档、编排配置、注册表、task.md、KB</td><td>Git</td></tr>
+      <tr><td>派生（读多）</td><td>wiki FTS 索引、任务看板索引</td><td>SQLite / PieKBS index</td></tr>
+      <tr><td>运行时（高频）</td><td>work_log 流水、任务状态机</td><td>~/data/control.db（WAL）</td></tr>
+    </table>
+  </main>
+  <footer>control · obtstar.top — AI 驱动执行的个人 Agent 平台</footer>
+</body>
+</html>
